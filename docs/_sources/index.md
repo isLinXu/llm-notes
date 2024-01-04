@@ -1,10 +1,10 @@
-# SurveyReadNotes
+# LLM-Notes
 
 ---
 
 ## 项目介绍
 
-综述阅读笔记整理。
+LLM大语言模型学习笔记。
 
 ### 项目简介
 
