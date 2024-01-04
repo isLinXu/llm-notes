@@ -17,8 +17,8 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'SurveyReadNotes'
-copyright = '2022, isLinXu'
+project = 'LLM-Notes'
+copyright = '2024, isLinXu'
 author = 'isLinXu'
 
 # The full version, including alpha/beta/rc tags
@@ -61,12 +61,12 @@ html_theme = "sphinx_book_theme"
 html_static_path = ['_static']
 
 html_theme_options = {
-    "repository_url": "https://github.com/isLinXu/survey-read-notes",
+    "repository_url": "https://github.com/isLinXu/llm-notes",
     "use_repository_button": True,
     "use_issues_button": True,
     "use_edit_page_button": True,
 }
 
-html_title = "综述阅读笔记"
+html_title = "大语言模型学习笔记"
 html_logo = "_static/logo.png"
 html_favicon = "_static/panda.png"
