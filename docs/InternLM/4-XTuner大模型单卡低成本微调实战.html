@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>深度学习领域综述总结汇总 &#8212; 大语言模型学习笔记</title>
+    <title>4-XTuner大模型单卡低成本微调实战 &#8212; 大语言模型学习笔记</title>
   
   
   
@@ -44,11 +44,12 @@
     <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'List/深度学习领域综述总结笔记';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'InternLM/4-XTuner大模型单卡低成本微调实战';</script>
     <link rel="shortcut icon" href="../_static/panda.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="深度学习领域综述总结" href="%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E9%A2%86%E5%9F%9F%E7%BB%BC%E8%BF%B0%E6%80%BB%E7%BB%93.html" />
+    <link rel="next" title="5-LMDeploy大模型量化部署实践" href="5-LMDeploy%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%87%8F%E5%8C%96%E9%83%A8%E7%BD%B2%E5%AE%9E%E8%B7%B5.html" />
+    <link rel="prev" title="3-基于InternLM和Langchain搭建你的知识库" href="3-%E5%9F%BA%E4%BA%8EInternLM%E5%92%8CLangchain%E6%90%AD%E5%BB%BA%E4%BD%A0%E7%9A%84%E7%9F%A5%E8%AF%86%E5%BA%93.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -133,14 +134,13 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">目录</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../Method/index.html">论文阅读指南</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">阅读清单</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="TODO_List.html">TODO_List</a></li>
-<li class="toctree-l2"><a class="reference internal" href="%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%BF%85%E7%9C%8B%E7%9A%8445%E7%AF%87%E8%AE%BA%E6%96%87.html">人工智能必看的45篇论文</a></li>
-<li class="toctree-l2"><a class="reference internal" href="%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E9%A2%86%E5%9F%9F%E7%BB%BC%E8%BF%B0%E6%80%BB%E7%BB%93.html">深度学习领域综述总结</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">深度学习领域综述总结汇总</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">书生·浦语大模型实战营</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1-%E4%B9%A6%E7%94%9F%E6%B5%A6%E8%AF%AD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%85%A8%E9%93%BE%E8%B7%AF%E5%BC%80%E6%BA%90%E5%BC%80%E6%94%BE%E4%BD%93%E7%B3%BB.html">1-书生浦语大模型全链路开源开放体系</a></li>
+<li class="toctree-l2"><a class="reference internal" href="2-%E8%BD%BB%E6%9D%BE%E5%88%86%E9%92%9F%E7%8E%A9%E8%BD%AC%E4%B9%A6%E7%94%9F%C2%B7%E6%B5%A6%E8%AF%AD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%B6%A3%E5%91%B3Demo.html">2-轻松分钟玩转书生·浦语大模型趣味Demo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="3-%E5%9F%BA%E4%BA%8EInternLM%E5%92%8CLangchain%E6%90%AD%E5%BB%BA%E4%BD%A0%E7%9A%84%E7%9F%A5%E8%AF%86%E5%BA%93.html">3-基于InternLM和Langchain搭建你的知识库</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">4-XTuner大模型单卡低成本微调实战</a></li>
+<li class="toctree-l2"><a class="reference internal" href="5-LMDeploy%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%87%8F%E5%8C%96%E9%83%A8%E7%BD%B2%E5%AE%9E%E8%B7%B5.html">5-LMDeploy大模型量化部署实践</a></li>
+<li class="toctree-l2"><a class="reference internal" href="6-OpenCompass%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AF%84%E6%B5%8B%E8%A7%A3%E8%AF%BB%E5%8F%8A%E5%AE%9E%E6%88%98%E6%8C%87%E5%8D%97.html">6-OpenCompass大模型评测解读及实战指南</a></li>
 </ul>
 </li>
 </ul>
@@ -214,7 +214,7 @@
       
       
       
-      <li><a href="https://github.com/isLinXu/llm-notes/edit/main/List/深度学习领域综述总结笔记.md" target="_blank"
+      <li><a href="https://github.com/isLinXu/llm-notes/edit/main/InternLM/4-XTuner大模型单卡低成本微调实战.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -231,7 +231,7 @@
       
       
       
-      <li><a href="https://github.com/isLinXu/llm-notes/issues/new?title=Issue%20on%20page%20%2FList/深度学习领域综述总结笔记.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/isLinXu/llm-notes/issues/new?title=Issue%20on%20page%20%2FInternLM/4-XTuner大模型单卡低成本微调实战.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -261,7 +261,7 @@
       
       
       
-      <li><a href="../_sources/List/深度学习领域综述总结笔记.md" target="_blank"
+      <li><a href="../_sources/InternLM/4-XTuner大模型单卡低成本微调实战.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -330,9 +330,7 @@ document.write(`
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</label>
+
 </div></div>
       
     </div>
@@ -343,21 +341,11 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>深度学习领域综述总结汇总</h1>
+    <h1>4-XTuner大模型单卡低成本微调实战</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2019-2020</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2020-2021</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2021-2022</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -367,201 +355,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="id1">
-<h1>深度学习领域综述总结汇总<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h1>
+  <section id="xtuner">
+<h1>4-XTuner大模型单卡低成本微调实战<a class="headerlink" href="#xtuner" title="Permalink to this heading">#</a></h1>
 <hr class="docutils" />
-<section id="id2">
-<h2>2019-2020<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
-<table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>序号</p></th>
-<th class="head text-left"><p>名称</p></th>
-<th class="head"><p>说明</p></th>
-<th class="head"><p>备注</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>1</p></td>
-<td class="text-left"><p>A guide to deep learning in healthcare</p></td>
-<td><p>医疗深度学习技术指南</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p>2</p></td>
-<td class="text-left"><p>Multimodal Machine Learning: A Survey and Taxonomy</p></td>
-<td><p>多模态机器学习</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p>3</p></td>
-<td class="text-left"><p>Few-shot Learning: A Survey</p></td>
-<td><p>小样本</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p>4</p></td>
-<td class="text-left"><p>Meta-Learning A Survey</p></td>
-<td><p>元学习</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p>5</p></td>
-<td class="text-left"><p>Multimodal Intelligence: Representation Learning, Information Fusion, and Applications</p></td>
-<td><p>迁移学习</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p>6</p></td>
-<td class="text-left"><p>Multimodal Intelligence Representation Learning,Information Fusion, and Applications</p></td>
-<td><p>多模态</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p>7</p></td>
-<td class="text-left"><p>Object Detection in 20 Years: A Survey</p></td>
-<td><p>目标检测</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p>8</p></td>
-<td class="text-left"><p>A Survey of Techniques for Constructing Chinese Knowledge Graphs and Their Applications</p></td>
-<td><p>汉语知识图构建技术及其应用综述</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p>9</p></td>
-<td class="text-left"><p>Advances and Open Problems in Federated Learning</p></td>
-<td><p>联邦学习</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p>10</p></td>
-<td class="text-left"><p>Optimization for deep learning theory and algorithms</p></td>
-<td><p>深度学习优化理论算法</p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="id3">
-<h2>2020-2021<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
-<table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-center"><p>序号</p></th>
-<th class="head text-left"><p>名称</p></th>
-<th class="head"><p>说明</p></th>
-<th class="head"><p>备注</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-center"><p>1</p></td>
-<td class="text-left"><p>Recent advances in deep learning theory</p></td>
-<td><p>深度学习理论</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>2</p></td>
-<td class="text-left"><p>Learning from Very Few Samples: A Survey</p></td>
-<td><p>少样本学习</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p>3</p></td>
-<td class="text-left"><p>A Survey on Knowledge Graphs: Representation, Acquisition and Applications</p></td>
-<td><p>知识图谱研究</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>4</p></td>
-<td class="text-left"><p>A Review on Generative Adversarial Networks: Algorithms, Theory, and Applications</p></td>
-<td><p>GAN算法理论和应用</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p>5</p></td>
-<td class="text-left"><p>A Survey on Causal Inference</p></td>
-<td><p>因果推断综述论文</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>6</p></td>
-<td class="text-left"><p>Pre-trained Models for Natural Language Processing: A Survey</p></td>
-<td><p>自然语言处理的预训练模型</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p>7</p></td>
-<td class="text-left"><p>A Survey on Heterogeneous Graph Embedding: Methods, Techniques, Applications and Sources</p></td>
-<td><p>异质图嵌入</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>8</p></td>
-<td class="text-left"><p>Graph Neural Networks: Taxonomy, Advances and Trends</p></td>
-<td><p>图神经网络</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p>9</p></td>
-<td class="text-left"><p>Efficient Transformers: A Survey</p></td>
-<td><p>高效Transformer</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>10</p></td>
-<td class="text-left"><p>Self-supervised Learning: Generative or Contrastive</p></td>
-<td><p>自我监督学习</p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="id4">
-<h2>2021-2022<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
-<table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-center"><p>序号</p></th>
-<th class="head text-left"><p>名称</p></th>
-<th class="head"><p>说明</p></th>
-<th class="head"><p>备注</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-center"><p>1</p></td>
-<td class="text-left"><p>关于深度学习的一点思考</p></td>
-<td><p>深度学习</p></td>
-<td><p>周志华</p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>2</p></td>
-<td class="text-left"><p>Attention Mechanisms in Computer Vision: A Survey</p></td>
-<td><p>注意力机制</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p>3</p></td>
-<td class="text-left"><p>Geometric Deep Learning Grids, Groups, Graphs, Geodesics, and Gauges</p></td>
-<td><p>几何深度学习</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>4</p></td>
-<td class="text-left"><p>A Survey of Transformers</p></td>
-<td><p>Transformer</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p>5</p></td>
-<td class="text-left"><p>Model Complexity of Deep Learning: A Survey</p></td>
-<td><p>深度学习模型复杂性</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>6</p></td>
-<td class="text-left"><p>Towards Out-Of-Distribution Generalization: A Survey</p></td>
-<td><p>分布外泛化</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p>7</p></td>
-<td class="text-left"><p>Deep Long-Tailed Learning: A Survey</p></td>
-<td><p>深度长尾学习</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>8</p></td>
-<td class="text-left"><p>Trustworthy AI: From Principles to Practices</p></td>
-<td><p>可信人工智能</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p>9</p></td>
-<td class="text-left"><p>Masked Autoencoders Are Scalable Vision Learners</p></td>
-<td><p>自监督MAE</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p>10</p></td>
-<td class="text-left"><p>人工智能的 10 个重大数理基础问题</p></td>
-<td><p>数理基础</p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-</section>
 </section>
 
 
@@ -574,13 +370,22 @@ document.write(`
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E9%A2%86%E5%9F%9F%E7%BB%BC%E8%BF%B0%E6%80%BB%E7%BB%93.html"
+       href="3-%E5%9F%BA%E4%BA%8EInternLM%E5%92%8CLangchain%E6%90%AD%E5%BB%BA%E4%BD%A0%E7%9A%84%E7%9F%A5%E8%AF%86%E5%BA%93.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">深度学习领域综述总结</p>
+        <p class="prev-next-title">3-基于InternLM和Langchain搭建你的知识库</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="5-LMDeploy%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%87%8F%E5%8C%96%E9%83%A8%E7%BD%B2%E5%AE%9E%E8%B7%B5.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">5-LMDeploy大模型量化部署实践</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -588,22 +393,6 @@ document.write(`
             </div>
             
             
-              
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2019-2020</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2020-2021</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2021-2022</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>
