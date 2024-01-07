@@ -140,6 +140,7 @@
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">3-基于InternLM和Langchain搭建你的知识库</a></li>
 <li class="toctree-l2"><a class="reference internal" href="4-XTuner%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%8D%95%E5%8D%A1%E4%BD%8E%E6%88%90%E6%9C%AC%E5%BE%AE%E8%B0%83%E5%AE%9E%E6%88%98.html">4-XTuner大模型单卡低成本微调实战</a></li>
 <li class="toctree-l2"><a class="reference internal" href="5-LMDeploy%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%87%8F%E5%8C%96%E9%83%A8%E7%BD%B2%E5%AE%9E%E8%B7%B5.html">5-LMDeploy大模型量化部署实践</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="6-OpenCompass%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AF%84%E6%B5%8B%E8%A7%A3%E8%AF%BB%E5%8F%8A%E5%AE%9E%E6%88%98%E6%8C%87%E5%8D%97.html">6-OpenCompass大模型评测解读及实战指南</a></li>
 </ul>
 </li>
@@ -330,7 +331,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -346,6 +349,37 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1 环境配置</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#internlm">1.1 InternLM 模型部署</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1.2 模型下载</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langchain">1.3 LangChain 相关环境配置</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nltk">1.4 下载 NLTK 相关资源</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">1.5 下载本项目代码</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2 知识库搭建</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2.1 数据收集</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">2.2 加载数据</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">2.3 构建向量数据库</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">2.4 整体脚本</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#internlm-langchain">3 InternLM 接入 LangChain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">4 构建检索问答链</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">4.1 加载向量数据库</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-prompt-template">4.2 实例化自定义 LLM 与 Prompt Template</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">4.3 构建检索问答链</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#web-demo">5 部署 Web Demo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">6 作业</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -358,6 +392,642 @@ document.write(`
   <section id="internlmlangchain">
 <h1>3-基于InternLM和Langchain搭建你的知识库<a class="headerlink" href="#internlmlangchain" title="Permalink to this heading">#</a></h1>
 <hr class="docutils" />
+<p><img alt="image-0" src="https://github.com/isLinXu/llm-notes/assets/59380685/063de5ab-dd03-4028-89fa-ecefa4423b0b" /></p>
+<ul class="simple">
+<li><p><span class="xref myst">基于 InternLM 和 LangChain 搭建你的知识库</span></p>
+<ul>
+<li><p><span class="xref myst">1 环境配置</span></p>
+<ul>
+<li><p><span class="xref myst">1.1 InternLM 模型部署</span></p></li>
+<li><p><span class="xref myst">1.2 模型下载</span></p></li>
+<li><p><span class="xref myst">1.3 LangChain 相关环境配置</span></p></li>
+<li><p><span class="xref myst">1.4 下载 NLTK 相关资源</span></p></li>
+<li><p><span class="xref myst">1.5 下载本项目代码</span></p></li>
+</ul>
+</li>
+<li><p><span class="xref myst">2 知识库搭建</span></p>
+<ul>
+<li><p><span class="xref myst">2.1 数据收集</span></p></li>
+<li><p><span class="xref myst">2.2 加载数据</span></p></li>
+<li><p><span class="xref myst">2.3 构建向量数据库</span></p></li>
+<li><p><span class="xref myst">2.4 整体脚本</span></p></li>
+</ul>
+</li>
+<li><p><span class="xref myst">3 InternLM 接入 LangChain</span></p></li>
+<li><p><span class="xref myst">4 构建检索问答链</span></p>
+<ul>
+<li><p><span class="xref myst">4.1 加载向量数据库</span></p></li>
+<li><p><span class="xref myst">4.2 实例化自定义 LLM 与 Prompt Template</span></p></li>
+<li><p><span class="xref myst">4.3 构建检索问答链</span></p></li>
+</ul>
+</li>
+<li><p><span class="xref myst">5 部署 Web Demo</span></p></li>
+</ul>
+</li>
+</ul>
+<section id="id1">
+<h2>1 环境配置<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<section id="internlm">
+<h3>1.1 InternLM 模型部署<a class="headerlink" href="#internlm" title="Permalink to this heading">#</a></h3>
+<p>在 <a class="reference external" href="https://studio.intern-ai.org.cn/">InternStudio</a> 平台中选择 A100(1/4) 的配置，如下图所示镜像选择 <code class="docutils literal notranslate"><span class="pre">Cuda11.7-conda</span></code>，如下图所示：</p>
+<p><img alt="image" src="https://github.com/isLinXu/llm-notes/assets/59380685/68577acd-bc82-4265-ae43-c1ddbaeec921" /></p>
+<p>接下来打开刚刚租用服务器的 <code class="docutils literal notranslate"><span class="pre">进入开发机</span></code>，并且打开其中的终端开始环境配置、模型下载和运行 <code class="docutils literal notranslate"><span class="pre">demo</span></code>。</p>
+<p><img alt="image-1" src="https://github.com/isLinXu/llm-notes/assets/59380685/cec11803-3108-4681-b822-d99aa937bcf9" /></p>
+<p>进入开发机后，在页面的左上角可以切换 <code class="docutils literal notranslate"><span class="pre">JupyterLab</span></code>、<code class="docutils literal notranslate"><span class="pre">终端</span></code> 和  <code class="docutils literal notranslate"><span class="pre">VScode</span></code>，并在终端输入 <code class="docutils literal notranslate"><span class="pre">bash</span></code> 命令，进入 <code class="docutils literal notranslate"><span class="pre">conda</span></code> 环境。如下图所示：</p>
+<p><img alt="image-11" src="https://github.com/isLinXu/llm-notes/assets/59380685/dcd866d7-4959-4a8c-ad1a-8527d885da5d" /></p>
+<p>进入 <code class="docutils literal notranslate"><span class="pre">conda</span></code> 环境之后，使用以下命令从本地一个已有的 <code class="docutils literal notranslate"><span class="pre">pytorch</span> <span class="pre">2.0.1</span></code> 的环境</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>bash
+/root/share/install_conda_env_internlm_base.sh<span class="w"> </span>InternLM
+</pre></div>
+</div>
+<p>然后使用以下命令激活环境</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>InternLM
+</pre></div>
+</div>
+<p>并在环境中安装运行 demo 所需要的依赖。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># 升级pip</span>
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+
+pip<span class="w"> </span>install<span class="w"> </span><span class="nv">modelscope</span><span class="o">==</span><span class="m">1</span>.9.5
+pip<span class="w"> </span>install<span class="w"> </span><span class="nv">transformers</span><span class="o">==</span><span class="m">4</span>.35.2
+pip<span class="w"> </span>install<span class="w"> </span><span class="nv">streamlit</span><span class="o">==</span><span class="m">1</span>.24.0
+pip<span class="w"> </span>install<span class="w"> </span><span class="nv">sentencepiece</span><span class="o">==</span><span class="m">0</span>.1.99
+pip<span class="w"> </span>install<span class="w"> </span><span class="nv">accelerate</span><span class="o">==</span><span class="m">0</span>.24.1
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h3>1.2 模型下载<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>在本地的 <code class="docutils literal notranslate"><span class="pre">/root/share/temp/model_repos/internlm-chat-7b</span></code> 目录下已存储有所需的模型文件参数，可以直接拷贝到个人目录的模型保存地址：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>/root/data/model/Shanghai_AI_Laboratory
+cp<span class="w"> </span>-r<span class="w"> </span>/root/share/temp/model_repos/internlm-chat-7b<span class="w"> </span>/root/data/model/Shanghai_AI_Laboratory/internlm-chat-7b
+</pre></div>
+</div>
+<p>如果本地拷贝模型参数出现问题，我们也可以使用 <code class="docutils literal notranslate"><span class="pre">modelscope</span></code> 中的 <code class="docutils literal notranslate"><span class="pre">snapshot_download</span></code> 函数下载模型，第一个参数为模型名称，参数 <code class="docutils literal notranslate"><span class="pre">cache_dir</span></code> 为模型的下载路径。</p>
+<p>在 <code class="docutils literal notranslate"><span class="pre">/root</span></code> 路径下新建目录 <code class="docutils literal notranslate"><span class="pre">data</span></code>，在目录下新建 <code class="docutils literal notranslate"><span class="pre">download.py</span></code> 文件并在其中输入以下内容，粘贴代码后记得保存文件，如下图所示。并运行 <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">/root/data/download.py</span></code> 执行下载，模型大小为 14 GB，下载模型大概需要 10~20 分钟</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">modelscope</span> <span class="kn">import</span> <span class="n">snapshot_download</span><span class="p">,</span> <span class="n">AutoModel</span><span class="p">,</span> <span class="n">AutoTokenizer</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">model_dir</span> <span class="o">=</span> <span class="n">snapshot_download</span><span class="p">(</span><span class="s1">&#39;Shanghai_AI_Laboratory/internlm-chat-7b&#39;</span><span class="p">,</span> <span class="n">cache_dir</span><span class="o">=</span><span class="s1">&#39;/root/data/model&#39;</span><span class="p">,</span> <span class="n">revision</span><span class="o">=</span><span class="s1">&#39;v1.0.3&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>注意：使用 <code class="docutils literal notranslate"><span class="pre">pwd</span></code> 命令可以查看当前的路径，<code class="docutils literal notranslate"><span class="pre">JupyterLab</span></code> 左侧目录栏显示为 <code class="docutils literal notranslate"><span class="pre">/root/</span></code> 下的路径。</p>
+</div></blockquote>
+<p><img alt="image-2" src="https://github.com/isLinXu/llm-notes/assets/59380685/4d1e3687-4e98-4f48-b375-6ba7e675dcc7" /></p>
+</section>
+<section id="langchain">
+<h3>1.3 LangChain 相关环境配置<a class="headerlink" href="#langchain" title="Permalink to this heading">#</a></h3>
+<p>在已完成 InternLM 的部署基础上，还需要安装以下依赖包：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">langchain</span><span class="o">==</span><span class="m">0</span>.0.292
+pip<span class="w"> </span>install<span class="w"> </span><span class="nv">gradio</span><span class="o">==</span><span class="m">4</span>.4.0
+pip<span class="w"> </span>install<span class="w"> </span><span class="nv">chromadb</span><span class="o">==</span><span class="m">0</span>.4.15
+pip<span class="w"> </span>install<span class="w"> </span>sentence-transformers<span class="o">==</span><span class="m">2</span>.2.2
+pip<span class="w"> </span>install<span class="w"> </span><span class="nv">unstructured</span><span class="o">==</span><span class="m">0</span>.10.30
+pip<span class="w"> </span>install<span class="w"> </span><span class="nv">markdown</span><span class="o">==</span><span class="m">3</span>.3.7
+</pre></div>
+</div>
+<p>同时，我们需要使用到开源词向量模型 <a class="reference external" href="https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2">Sentence Transformer</a>:（我们也可以选用别的开源词向量模型来进行 Embedding，目前选用这个模型是相对轻量、支持中文且效果较好的，同学们可以自由尝试别的开源词向量模型）</p>
+<p>首先需要使用 <code class="docutils literal notranslate"><span class="pre">huggingface</span></code> 官方提供的 <code class="docutils literal notranslate"><span class="pre">huggingface-cli</span></code> 命令行工具。安装依赖:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>huggingface_hub
+</pre></div>
+</div>
+<p>然后在和 <code class="docutils literal notranslate"><span class="pre">/root/data</span></code> 目录下新建python文件 <code class="docutils literal notranslate"><span class="pre">download_hf.py</span></code>，填入以下代码：</p>
+<ul class="simple">
+<li><p>resume-download：断点续下</p></li>
+<li><p>local-dir：本地存储路径。（linux环境下需要填写绝对路径）</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># 下载模型</span>
+<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;huggingface-cli download --resume-download sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2 --local-dir /root/data/model/sentence-transformer&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>但是，使用 huggingface 下载可能速度较慢，我们可以使用 huggingface 镜像下载。与使用hugginge face下载相同，只需要填入镜像地址即可。</p>
+<p>将 <code class="docutils literal notranslate"><span class="pre">download_hf.py</span></code> 中的代码修改为以下代码：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># 设置环境变量</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HF_ENDPOINT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;https://hf-mirror.com&#39;</span>
+
+<span class="c1"># 下载模型</span>
+<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">&#39;huggingface-cli download --resume-download sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2 --local-dir /root/data/model/sentence-transformer&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>然后，在 <code class="docutils literal notranslate"><span class="pre">\root\data</span></code> 目录下执行该脚本即可自动开始下载：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>download_hf.py
+</pre></div>
+</div>
+<p>更多关于镜像使用可以移步至 <a class="reference external" href="https://hf-mirror.com/">HF Mirror</a> 查看。</p>
+</section>
+<section id="nltk">
+<h3>1.4 下载 NLTK 相关资源<a class="headerlink" href="#nltk" title="Permalink to this heading">#</a></h3>
+<p>我们在使用开源词向量模型构建开源词向量的时候，需要用到第三方库 <code class="docutils literal notranslate"><span class="pre">nltk</span></code> 的一些资源。正常情况下，其会自动从互联网上下载，但可能由于网络原因会导致下载中断，此处我们可以从国内仓库镜像地址下载相关资源，保存到服务器上。</p>
+<p>我们用以下命令下载 nltk 资源并解压到服务器上：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/root
+git<span class="w"> </span>clone<span class="w"> </span>https://gitee.com/yzy0612/nltk_data.git<span class="w">  </span>--branch<span class="w"> </span>gh-pages
+<span class="nb">cd</span><span class="w"> </span>nltk_data
+mv<span class="w"> </span>packages/*<span class="w">  </span>./
+<span class="nb">cd</span><span class="w"> </span>tokenizers
+unzip<span class="w"> </span>punkt.zip
+<span class="nb">cd</span><span class="w"> </span>../taggers
+unzip<span class="w"> </span>averaged_perceptron_tagger.zip
+</pre></div>
+</div>
+<p>之后使用时服务器即会自动使用已有资源，无需再次下载。</p>
+</section>
+<section id="id3">
+<h3>1.5 下载本项目代码<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<p>我们在仓库中同步提供了所有脚本，可以查看该教程文件的同级目录的 <code class="docutils literal notranslate"><span class="pre">demo</span></code> 文件夹。</p>
+<p>建议通过以下目录将仓库 clone 到本地，可以直接在本地运行相关代码：</p>
+<div class="highlight-bahs notranslate"><div class="highlight"><pre><span></span>cd /root/data
+git clone https://github.com/InternLM/tutorial
+</pre></div>
+</div>
+<p>通过上述命令，可以将本仓库 clone 到本地 <code class="docutils literal notranslate"><span class="pre">root/data/tutorial</span></code> 目录下，在之后的过程中可以对照仓库中的脚本来完成自己的代码，也可以直接使用仓库中的脚本。</p>
+</section>
+</section>
+<section id="id4">
+<h2>2 知识库搭建<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h2>
+<section id="id5">
+<h3>2.1 数据收集<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<p>我们选择由上海人工智能实验室开源的一系列大模型工具开源仓库作为语料库来源，包括：</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://gitee.com/open-compass/opencompass">OpenCompass</a>：面向大模型评测的一站式平台</p></li>
+<li><p><a class="reference external" href="https://gitee.com/InternLM/lmdeploy">IMDeploy</a>：涵盖了 LLM 任务的全套轻量化、部署和服务解决方案的高效推理工具箱</p></li>
+<li><p><a class="reference external" href="https://gitee.com/InternLM/xtuner">XTuner</a>：轻量级微调大语言模型的工具库</p></li>
+<li><p><a class="reference external" href="https://gitee.com/InternLM/InternLM-XComposer">InternLM-XComposer</a>：浦语·灵笔，基于书生·浦语大语言模型研发的视觉-语言大模型</p></li>
+<li><p><a class="reference external" href="https://gitee.com/InternLM/lagent">Lagent</a>：一个轻量级、开源的基于大语言模型的智能体（agent）框架</p></li>
+<li><p><a class="reference external" href="https://gitee.com/InternLM/InternLM">InternLM</a>：一个开源的轻量级训练框架，旨在支持大模型训练而无需大量的依赖</p></li>
+</ul>
+<p>首先我们需要将上述远程开源仓库 Clone 到本地，可以使用以下命令：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 进入到数据库盘</span>
+<span class="nb">cd</span><span class="w"> </span>/root/data
+<span class="c1"># clone 上述开源仓库</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://gitee.com/open-compass/opencompass.git
+git<span class="w"> </span>clone<span class="w"> </span>https://gitee.com/InternLM/lmdeploy.git
+git<span class="w"> </span>clone<span class="w"> </span>https://gitee.com/InternLM/xtuner.git
+git<span class="w"> </span>clone<span class="w"> </span>https://gitee.com/InternLM/InternLM-XComposer.git
+git<span class="w"> </span>clone<span class="w"> </span>https://gitee.com/InternLM/lagent.git
+git<span class="w"> </span>clone<span class="w"> </span>https://gitee.com/InternLM/InternLM.git
+</pre></div>
+</div>
+<p>接着，为语料处理方便，我们将选用上述仓库中所有的 markdown、txt 文件作为示例语料库。注意，也可以选用其中的代码文件加入到知识库中，但需要针对代码文件格式进行额外处理（因为代码文件对逻辑联系要求较高，且规范性较强，在分割时最好基于代码模块进行分割再加入向量数据库）。</p>
+<p>我们首先将上述仓库中所有满足条件的文件路径找出来，我们定义一个函数，该函数将递归指定文件夹路径，返回其中所有满足条件（即后缀名为 .md 或者 .txt 的文件）的文件路径：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span> 
+<span class="k">def</span> <span class="nf">get_files</span><span class="p">(</span><span class="n">dir_path</span><span class="p">):</span>
+    <span class="c1"># args：dir_path，目标文件夹路径</span>
+    <span class="n">file_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">filepath</span><span class="p">,</span> <span class="n">dirnames</span><span class="p">,</span> <span class="n">filenames</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">dir_path</span><span class="p">):</span>
+        <span class="c1"># os.walk 函数将递归遍历指定文件夹</span>
+        <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
+            <span class="c1"># 通过后缀名判断文件类型是否满足要求</span>
+            <span class="k">if</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.md&quot;</span><span class="p">):</span>
+                <span class="c1"># 如果满足要求，将其绝对路径加入到结果列表</span>
+                <span class="n">file_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.txt&quot;</span><span class="p">):</span>
+                <span class="n">file_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">file_list</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3>2.2 加载数据<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<p>得到所有目标文件路径之后，我们可以使用 LangChain 提供的 FileLoader 对象来加载目标文件，得到由目标文件解析出的纯文本内容。由于不同类型的文件需要对应不同的 FileLoader，我们判断目标文件类型，并针对性调用对应类型的 FileLoader，同时，调用 FileLoader 对象的 load 方法来得到加载之后的纯文本对象：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">langchain.document_loaders</span> <span class="kn">import</span> <span class="n">UnstructuredFileLoader</span>
+<span class="kn">from</span> <span class="nn">langchain.document_loaders</span> <span class="kn">import</span> <span class="n">UnstructuredMarkdownLoader</span>
+
+<span class="k">def</span> <span class="nf">get_text</span><span class="p">(</span><span class="n">dir_path</span><span class="p">):</span>
+    <span class="c1"># args：dir_path，目标文件夹路径</span>
+    <span class="c1"># 首先调用上文定义的函数得到目标文件路径列表</span>
+    <span class="n">file_lst</span> <span class="o">=</span> <span class="n">get_files</span><span class="p">(</span><span class="n">dir_path</span><span class="p">)</span>
+    <span class="c1"># docs 存放加载之后的纯文本对象</span>
+    <span class="n">docs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># 遍历所有目标文件</span>
+    <span class="k">for</span> <span class="n">one_file</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">file_lst</span><span class="p">):</span>
+        <span class="n">file_type</span> <span class="o">=</span> <span class="n">one_file</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">file_type</span> <span class="o">==</span> <span class="s1">&#39;md&#39;</span><span class="p">:</span>
+            <span class="n">loader</span> <span class="o">=</span> <span class="n">UnstructuredMarkdownLoader</span><span class="p">(</span><span class="n">one_file</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">file_type</span> <span class="o">==</span> <span class="s1">&#39;txt&#39;</span><span class="p">:</span>
+            <span class="n">loader</span> <span class="o">=</span> <span class="n">UnstructuredFileLoader</span><span class="p">(</span><span class="n">one_file</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># 如果是不符合条件的文件，直接跳过</span>
+            <span class="k">continue</span>
+        <span class="n">docs</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">docs</span>
+</pre></div>
+</div>
+<p>使用上文函数，我们得到的 <code class="docutils literal notranslate"><span class="pre">docs</span></code> 为一个纯文本对象对应的列表。</p>
+</section>
+<section id="id7">
+<h3>2.3 构建向量数据库<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
+<p>得到该列表之后，我们就可以将它引入到 LangChain 框架中构建向量数据库。由纯文本对象构建向量数据库，我们需要先对文本进行分块，接着对文本块进行向量化。</p>
+<p>LangChain 提供了多种文本分块工具，此处我们使用字符串递归分割器，并选择分块大小为 500，块重叠长度为 150（由于篇幅限制，此处没有展示切割效果，学习者可以自行尝试一下，想要深入学习 LangChain 文本分块可以参考教程 <a class="reference external" href="https://github.com/datawhalechina/prompt-engineering-for-developers/blob/9dbcb48416eb8af9ff9447388838521dc0f9acb0/content/LangChain%20Chat%20with%20Your%20Data/1.%E7%AE%80%E4%BB%8B%20Introduction.md">《LangChain - Chat With Your Data》</a>：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain.text_splitter</span> <span class="kn">import</span> <span class="n">RecursiveCharacterTextSplitter</span>
+
+<span class="n">text_splitter</span> <span class="o">=</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="p">(</span>
+    <span class="n">chunk_size</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">split_docs</span> <span class="o">=</span> <span class="n">text_splitter</span><span class="o">.</span><span class="n">split_documents</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>接着我们选用开源词向量模型 <a class="reference external" href="https://huggingface.co/sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2">Sentence Transformer</a> 来进行文本向量化。LangChain 提供了直接引入 HuggingFace 开源社区中的模型进行向量化的接口：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain.embeddings.huggingface</span> <span class="kn">import</span> <span class="n">HuggingFaceEmbeddings</span>
+
+<span class="n">embeddings</span> <span class="o">=</span> <span class="n">HuggingFaceEmbeddings</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;/root/data/model/sentence-transformer&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>同时，考虑到 Chroma 是目前最常用的入门数据库，我们选择 Chroma 作为向量数据库，基于上文分块后的文档以及加载的开源向量化模型，将语料加载到指定路径下的向量数据库：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain.vectorstores</span> <span class="kn">import</span> <span class="n">Chroma</span>
+
+<span class="c1"># 定义持久化路径</span>
+<span class="n">persist_directory</span> <span class="o">=</span> <span class="s1">&#39;data_base/vector_db/chroma&#39;</span>
+<span class="c1"># 加载数据库</span>
+<span class="n">vectordb</span> <span class="o">=</span> <span class="n">Chroma</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span>
+    <span class="n">documents</span><span class="o">=</span><span class="n">split_docs</span><span class="p">,</span>
+    <span class="n">embedding</span><span class="o">=</span><span class="n">embeddings</span><span class="p">,</span>
+    <span class="n">persist_directory</span><span class="o">=</span><span class="n">persist_directory</span>  <span class="c1"># 允许我们将persist_directory目录保存到磁盘上</span>
+<span class="p">)</span>
+<span class="c1"># 将加载的向量数据库持久化到磁盘上</span>
+<span class="n">vectordb</span><span class="o">.</span><span class="n">persist</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h3>2.4 整体脚本<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
+<p>将上述代码整合在一起为知识库搭建的脚本：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 首先导入所需第三方库</span>
+<span class="kn">from</span> <span class="nn">langchain.document_loaders</span> <span class="kn">import</span> <span class="n">UnstructuredFileLoader</span>
+<span class="kn">from</span> <span class="nn">langchain.document_loaders</span> <span class="kn">import</span> <span class="n">UnstructuredMarkdownLoader</span>
+<span class="kn">from</span> <span class="nn">langchain.text_splitter</span> <span class="kn">import</span> <span class="n">RecursiveCharacterTextSplitter</span>
+<span class="kn">from</span> <span class="nn">langchain.vectorstores</span> <span class="kn">import</span> <span class="n">Chroma</span>
+<span class="kn">from</span> <span class="nn">langchain.embeddings.huggingface</span> <span class="kn">import</span> <span class="n">HuggingFaceEmbeddings</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># 获取文件路径函数</span>
+<span class="k">def</span> <span class="nf">get_files</span><span class="p">(</span><span class="n">dir_path</span><span class="p">):</span>
+    <span class="c1"># args：dir_path，目标文件夹路径</span>
+    <span class="n">file_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">filepath</span><span class="p">,</span> <span class="n">dirnames</span><span class="p">,</span> <span class="n">filenames</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">dir_path</span><span class="p">):</span>
+        <span class="c1"># os.walk 函数将递归遍历指定文件夹</span>
+        <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
+            <span class="c1"># 通过后缀名判断文件类型是否满足要求</span>
+            <span class="k">if</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.md&quot;</span><span class="p">):</span>
+                <span class="c1"># 如果满足要求，将其绝对路径加入到结果列表</span>
+                <span class="n">file_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.txt&quot;</span><span class="p">):</span>
+                <span class="n">file_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">filename</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">file_list</span>
+
+<span class="c1"># 加载文件函数</span>
+<span class="k">def</span> <span class="nf">get_text</span><span class="p">(</span><span class="n">dir_path</span><span class="p">):</span>
+    <span class="c1"># args：dir_path，目标文件夹路径</span>
+    <span class="c1"># 首先调用上文定义的函数得到目标文件路径列表</span>
+    <span class="n">file_lst</span> <span class="o">=</span> <span class="n">get_files</span><span class="p">(</span><span class="n">dir_path</span><span class="p">)</span>
+    <span class="c1"># docs 存放加载之后的纯文本对象</span>
+    <span class="n">docs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># 遍历所有目标文件</span>
+    <span class="k">for</span> <span class="n">one_file</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">file_lst</span><span class="p">):</span>
+        <span class="n">file_type</span> <span class="o">=</span> <span class="n">one_file</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">file_type</span> <span class="o">==</span> <span class="s1">&#39;md&#39;</span><span class="p">:</span>
+            <span class="n">loader</span> <span class="o">=</span> <span class="n">UnstructuredMarkdownLoader</span><span class="p">(</span><span class="n">one_file</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">file_type</span> <span class="o">==</span> <span class="s1">&#39;txt&#39;</span><span class="p">:</span>
+            <span class="n">loader</span> <span class="o">=</span> <span class="n">UnstructuredFileLoader</span><span class="p">(</span><span class="n">one_file</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># 如果是不符合条件的文件，直接跳过</span>
+            <span class="k">continue</span>
+        <span class="n">docs</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">docs</span>
+
+<span class="c1"># 目标文件夹</span>
+<span class="n">tar_dir</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;/root/data/InternLM&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;/root/data/InternLM-XComposer&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;/root/data/lagent&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;/root/data/lmdeploy&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;/root/data/opencompass&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;/root/data/xtuner&quot;</span>
+<span class="p">]</span>
+
+<span class="c1"># 加载目标文件</span>
+<span class="n">docs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">dir_path</span> <span class="ow">in</span> <span class="n">tar_dir</span><span class="p">:</span>
+    <span class="n">docs</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">get_text</span><span class="p">(</span><span class="n">dir_path</span><span class="p">))</span>
+
+<span class="c1"># 对文本进行分块</span>
+<span class="n">text_splitter</span> <span class="o">=</span> <span class="n">RecursiveCharacterTextSplitter</span><span class="p">(</span>
+    <span class="n">chunk_size</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">split_docs</span> <span class="o">=</span> <span class="n">text_splitter</span><span class="o">.</span><span class="n">split_documents</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+
+<span class="c1"># 加载开源词向量模型</span>
+<span class="n">embeddings</span> <span class="o">=</span> <span class="n">HuggingFaceEmbeddings</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;/root/data/model/sentence-transformer&quot;</span><span class="p">)</span>
+
+<span class="c1"># 构建向量数据库</span>
+<span class="c1"># 定义持久化路径</span>
+<span class="n">persist_directory</span> <span class="o">=</span> <span class="s1">&#39;data_base/vector_db/chroma&#39;</span>
+<span class="c1"># 加载数据库</span>
+<span class="n">vectordb</span> <span class="o">=</span> <span class="n">Chroma</span><span class="o">.</span><span class="n">from_documents</span><span class="p">(</span>
+    <span class="n">documents</span><span class="o">=</span><span class="n">split_docs</span><span class="p">,</span>
+    <span class="n">embedding</span><span class="o">=</span><span class="n">embeddings</span><span class="p">,</span>
+    <span class="n">persist_directory</span><span class="o">=</span><span class="n">persist_directory</span>  <span class="c1"># 允许我们将persist_directory目录保存到磁盘上</span>
+<span class="p">)</span>
+<span class="c1"># 将加载的向量数据库持久化到磁盘上</span>
+<span class="n">vectordb</span><span class="o">.</span><span class="n">persist</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>可以在 <code class="docutils literal notranslate"><span class="pre">/root/data</span></code> 下新建一个 <code class="docutils literal notranslate"><span class="pre">demo</span></code>目录，将该脚本和后续脚本均放在该目录下运行。运行上述脚本，即可在本地构建已持久化的向量数据库，后续直接导入该数据库即可，无需重复构建。</p>
+</section>
+</section>
+<section id="internlm-langchain">
+<h2>3 InternLM 接入 LangChain<a class="headerlink" href="#internlm-langchain" title="Permalink to this heading">#</a></h2>
+<p>为便捷构建 LLM 应用，我们需要基于本地部署的 InternLM，继承 LangChain 的 LLM 类自定义一个 InternLM LLM 子类，从而实现将 InternLM 接入到 LangChain 框架中。完成 LangChain 的自定义 LLM 子类之后，可以以完全一致的方式调用 LangChain 的接口，而无需考虑底层模型调用的不一致。</p>
+<p>基于本地部署的 InternLM 自定义 LLM 类并不复杂，我们只需从 LangChain.llms.base.LLM 类继承一个子类，并重写构造函数与 <code class="docutils literal notranslate"><span class="pre">_call</span></code> 函数即可：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain.llms.base</span> <span class="kn">import</span> <span class="n">LLM</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">langchain.callbacks.manager</span> <span class="kn">import</span> <span class="n">CallbackManagerForLLMRun</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModelForCausalLM</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="k">class</span> <span class="nc">InternLM_LLM</span><span class="p">(</span><span class="n">LLM</span><span class="p">):</span>
+    <span class="c1"># 基于本地 InternLM 自定义 LLM 类</span>
+    <span class="n">tokenizer</span> <span class="p">:</span> <span class="n">AutoTokenizer</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">model</span><span class="p">:</span> <span class="n">AutoModelForCausalLM</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_path</span> <span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+        <span class="c1"># model_path: InternLM 模型路径</span>
+        <span class="c1"># 从本地初始化模型</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;正在从本地加载模型...&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_path</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_path</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;完成本地模型的加载&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prompt</span> <span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">stop</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="n">run_manager</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">CallbackManagerForLLMRun</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+        <span class="c1"># 重写调用函数</span>
+        <span class="n">system_prompt</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;You are an AI assistant whose name is InternLM (书生·浦语).</span>
+<span class="s2">        - InternLM (书生·浦语) is a conversational language model that is developed by Shanghai AI Laboratory (上海人工智能实验室). It is designed to be helpful, honest, and harmless.</span>
+<span class="s2">        - InternLM (书生·浦语) can understand and communicate fluently in the language chosen by the user such as English and 中文.</span>
+<span class="s2">        &quot;&quot;&quot;</span>
+        
+        <span class="n">messages</span> <span class="o">=</span> <span class="p">[(</span><span class="n">system_prompt</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)]</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">history</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">chat</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">prompt</span> <span class="p">,</span> <span class="n">history</span><span class="o">=</span><span class="n">messages</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span>
+        
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_llm_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;InternLM&quot;</span>
+</pre></div>
+</div>
+<p>在上述类定义中，我们分别重写了构造函数和 <code class="docutils literal notranslate"><span class="pre">_call</span></code> 函数：对于构造函数，我们在对象实例化的一开始加载本地部署的 InternLM 模型，从而避免每一次调用都需要重新加载模型带来的时间过长；<code class="docutils literal notranslate"><span class="pre">_call</span></code> 函数是 LLM 类的核心函数，LangChain 会调用该函数来调用 LLM，在该函数中，我们调用已实例化模型的 chat 方法，从而实现对模型的调用并返回调用结果。</p>
+<p>在整体项目中，我们将上述代码封装为 LLM.py，后续将直接从该文件中引入自定义的 LLM 类。</p>
+</section>
+<section id="id9">
+<h2>4 构建检索问答链<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h2>
+<p>LangChain 通过提供检索问答链对象来实现对于 RAG 全流程的封装。所谓检索问答链，即通过一个对象完成检索增强问答（即RAG）的全流程，针对 RAG 的更多概念，我们会在视频内容中讲解，也欢迎读者查阅该教程来进一步了解：<a class="reference external" href="https://github.com/datawhalechina/llm-universe/tree/main">《LLM Universe》</a>。我们可以调用一个 LangChain 提供的 <code class="docutils literal notranslate"><span class="pre">RetrievalQA</span></code> 对象，通过初始化时填入已构建的数据库和自定义 LLM 作为参数，来简便地完成检索增强问答的全流程，LangChain 会自动完成基于用户提问进行检索、获取相关文档、拼接为合适的 Prompt 并交给 LLM 问答的全部流程。</p>
+<section id="id10">
+<h3>4.1 加载向量数据库<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
+<p>首先我们需要将上文构建的向量数据库导入进来，我们可以直接通过 Chroma 以及上文定义的词向量模型来加载已构建的数据库：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain.vectorstores</span> <span class="kn">import</span> <span class="n">Chroma</span>
+<span class="kn">from</span> <span class="nn">langchain.embeddings.huggingface</span> <span class="kn">import</span> <span class="n">HuggingFaceEmbeddings</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="c1"># 定义 Embeddings</span>
+<span class="n">embeddings</span> <span class="o">=</span> <span class="n">HuggingFaceEmbeddings</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;/root/data/model/sentence-transformer&quot;</span><span class="p">)</span>
+
+<span class="c1"># 向量数据库持久化路径</span>
+<span class="n">persist_directory</span> <span class="o">=</span> <span class="s1">&#39;data_base/vector_db/chroma&#39;</span>
+
+<span class="c1"># 加载数据库</span>
+<span class="n">vectordb</span> <span class="o">=</span> <span class="n">Chroma</span><span class="p">(</span>
+    <span class="n">persist_directory</span><span class="o">=</span><span class="n">persist_directory</span><span class="p">,</span> 
+    <span class="n">embedding_function</span><span class="o">=</span><span class="n">embeddings</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>上述代码得到的 <code class="docutils literal notranslate"><span class="pre">vectordb</span></code> 对象即为我们已构建的向量数据库对象，该对象可以针对用户的 <code class="docutils literal notranslate"><span class="pre">query</span></code> 进行语义向量检索，得到与用户提问相关的知识片段。</p>
+</section>
+<section id="llm-prompt-template">
+<h3>4.2 实例化自定义 LLM 与 Prompt Template<a class="headerlink" href="#llm-prompt-template" title="Permalink to this heading">#</a></h3>
+<p>接着，我们实例化一个基于 InternLM 自定义的 LLM 对象：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">LLM</span> <span class="kn">import</span> <span class="n">InternLM_LLM</span>
+<span class="n">llm</span> <span class="o">=</span> <span class="n">InternLM_LLM</span><span class="p">(</span><span class="n">model_path</span> <span class="o">=</span> <span class="s2">&quot;/root/data/model/Shanghai_AI_Laboratory/internlm-chat-7b&quot;</span><span class="p">)</span>
+<span class="n">llm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="s2">&quot;你是谁&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>构建检索问答链，还需要构建一个 Prompt Template，该 Template 其实基于一个带变量的字符串，在检索之后，LangChain 会将检索到的相关文档片段填入到 Template 的变量中，从而实现带知识的 Prompt 构建。我们可以基于 LangChain 的 Template 基类来实例化这样一个 Template 对象：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain.prompts</span> <span class="kn">import</span> <span class="n">PromptTemplate</span>
+
+<span class="c1"># 我们所构造的 Prompt 模板</span>
+<span class="n">template</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;使用以下上下文来回答用户的问题。如果你不知道答案，就说你不知道。总是使用中文回答。</span>
+<span class="s2">问题: </span><span class="si">{question}</span>
+<span class="s2">可参考的上下文：</span>
+<span class="s2">···</span>
+<span class="si">{context}</span>
+<span class="s2">···</span>
+<span class="s2">如果给定的上下文无法让你做出回答，请回答你不知道。</span>
+<span class="s2">有用的回答:&quot;&quot;&quot;</span>
+
+<span class="c1"># 调用 LangChain 的方法来实例化一个 Template 对象，该对象包含了 context 和 question 两个变量，在实际调用时，这两个变量会被检索到的文档片段和用户提问填充</span>
+<span class="n">QA_CHAIN_PROMPT</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">(</span><span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;context&quot;</span><span class="p">,</span><span class="s2">&quot;question&quot;</span><span class="p">],</span><span class="n">template</span><span class="o">=</span><span class="n">template</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id11">
+<h3>4.3 构建检索问答链<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h3>
+<p>最后，可以调用 LangChain 提供的检索问答链构造函数，基于我们的自定义 LLM、Prompt Template 和向量知识库来构建一个基于 InternLM 的检索问答链：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">langchain.chains</span> <span class="kn">import</span> <span class="n">RetrievalQA</span>
+
+<span class="n">qa_chain</span> <span class="o">=</span> <span class="n">RetrievalQA</span><span class="o">.</span><span class="n">from_chain_type</span><span class="p">(</span><span class="n">llm</span><span class="p">,</span><span class="n">retriever</span><span class="o">=</span><span class="n">vectordb</span><span class="o">.</span><span class="n">as_retriever</span><span class="p">(),</span><span class="n">return_source_documents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">chain_type_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;prompt&quot;</span><span class="p">:</span><span class="n">QA_CHAIN_PROMPT</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>得到的 <code class="docutils literal notranslate"><span class="pre">qa_chain</span></code> 对象即可以实现我们的核心功能，即基于 InternLM 模型的专业知识库助手。我们可以对比该检索问答链和纯 LLM 的问答效果：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 检索问答链回答效果</span>
+<span class="n">question</span> <span class="o">=</span> <span class="s2">&quot;什么是InternLM&quot;</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">qa_chain</span><span class="p">({</span><span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">question</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;检索问答链回答 question 的结果：&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s2">&quot;result&quot;</span><span class="p">])</span>
+
+<span class="c1"># 仅 LLM 回答效果</span>
+<span class="n">result_2</span> <span class="o">=</span> <span class="n">llm</span><span class="p">(</span><span class="n">question</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;大模型回答 question 的结果：&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="web-demo">
+<h2>5 部署 Web Demo<a class="headerlink" href="#web-demo" title="Permalink to this heading">#</a></h2>
+<p>在完成上述核心功能后，我们可以基于 Gradio 框架将其部署到 Web 网页，从而搭建一个小型 Demo，便于测试与使用。</p>
+<p>我们首先将上文的代码内容封装为一个返回构建的检索问答链对象的函数，并在启动 Gradio 的第一时间调用该函数得到检索问答链对象，后续直接使用该对象进行问答对话，从而避免重复加载模型：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">from</span> <span class="nn">langchain.vectorstores</span> <span class="kn">import</span> <span class="n">Chroma</span>
+<span class="kn">from</span> <span class="nn">langchain.embeddings.huggingface</span> <span class="kn">import</span> <span class="n">HuggingFaceEmbeddings</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">LLM</span> <span class="kn">import</span> <span class="n">InternLM_LLM</span>
+<span class="kn">from</span> <span class="nn">langchain.prompts</span> <span class="kn">import</span> <span class="n">PromptTemplate</span>
+<span class="kn">from</span> <span class="nn">langchain.chains</span> <span class="kn">import</span> <span class="n">RetrievalQA</span>
+
+<span class="k">def</span> <span class="nf">load_chain</span><span class="p">():</span>
+    <span class="c1"># 加载问答链</span>
+    <span class="c1"># 定义 Embeddings</span>
+    <span class="n">embeddings</span> <span class="o">=</span> <span class="n">HuggingFaceEmbeddings</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;/root/data/model/sentence-transformer&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 向量数据库持久化路径</span>
+    <span class="n">persist_directory</span> <span class="o">=</span> <span class="s1">&#39;data_base/vector_db/chroma&#39;</span>
+
+    <span class="c1"># 加载数据库</span>
+    <span class="n">vectordb</span> <span class="o">=</span> <span class="n">Chroma</span><span class="p">(</span>
+        <span class="n">persist_directory</span><span class="o">=</span><span class="n">persist_directory</span><span class="p">,</span>  <span class="c1"># 允许我们将persist_directory目录保存到磁盘上</span>
+        <span class="n">embedding_function</span><span class="o">=</span><span class="n">embeddings</span>
+    <span class="p">)</span>
+
+    <span class="c1"># 加载自定义 LLM</span>
+    <span class="n">llm</span> <span class="o">=</span> <span class="n">InternLM_LLM</span><span class="p">(</span><span class="n">model_path</span> <span class="o">=</span> <span class="s2">&quot;/root/data/model/Shanghai_AI_Laboratory/internlm-chat-7b&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 定义一个 Prompt Template</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;使用以下上下文来回答最后的问题。如果你不知道答案，就说你不知道，不要试图编造答</span>
+<span class="s2">    案。尽量使答案简明扼要。总是在回答的最后说“谢谢你的提问！”。</span>
+<span class="s2">    </span><span class="si">{context}</span>
+<span class="s2">    问题: </span><span class="si">{question}</span>
+<span class="s2">    有用的回答:&quot;&quot;&quot;</span>
+
+    <span class="n">QA_CHAIN_PROMPT</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">(</span><span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;context&quot;</span><span class="p">,</span><span class="s2">&quot;question&quot;</span><span class="p">],</span><span class="n">template</span><span class="o">=</span><span class="n">template</span><span class="p">)</span>
+
+    <span class="c1"># 运行 chain</span>
+    <span class="n">qa_chain</span> <span class="o">=</span> <span class="n">RetrievalQA</span><span class="o">.</span><span class="n">from_chain_type</span><span class="p">(</span><span class="n">llm</span><span class="p">,</span><span class="n">retriever</span><span class="o">=</span><span class="n">vectordb</span><span class="o">.</span><span class="n">as_retriever</span><span class="p">(),</span><span class="n">return_source_documents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">chain_type_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;prompt&quot;</span><span class="p">:</span><span class="n">QA_CHAIN_PROMPT</span><span class="p">})</span>
+    
+    <span class="k">return</span> <span class="n">qa_chain</span>
+</pre></div>
+</div>
+<p>接着我们定义一个类，该类负责加载并存储检索问答链，并响应 Web 界面里调用检索问答链进行回答的动作：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Model_center</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    存储检索问答链的对象 </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># 构造函数，加载检索问答链</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">chain</span> <span class="o">=</span> <span class="n">load_chain</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">qa_chain_self_answer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">question</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">chat_history</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        调用问答链进行回答</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">question</span> <span class="o">==</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">question</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">chat_history</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">chat_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">chain</span><span class="p">({</span><span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">question</span><span class="p">})[</span><span class="s2">&quot;result&quot;</span><span class="p">]))</span>
+            <span class="c1"># 将问答结果直接附加到问答历史中，Gradio 会将其展示出来</span>
+            <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">chat_history</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">e</span><span class="p">,</span> <span class="n">chat_history</span>
+
+</pre></div>
+</div>
+<p>然后我们只需按照 Gradio 的框架使用方法，实例化一个 Web 界面并将点击动作绑定到上述类的回答方法即可：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gradio</span> <span class="k">as</span> <span class="nn">gr</span>
+
+<span class="c1"># 实例化核心功能对象</span>
+<span class="n">model_center</span> <span class="o">=</span> <span class="n">Model_center</span><span class="p">()</span>
+<span class="c1"># 创建一个 Web 界面</span>
+<span class="n">block</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Blocks</span><span class="p">()</span>
+<span class="k">with</span> <span class="n">block</span> <span class="k">as</span> <span class="n">demo</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Row</span><span class="p">(</span><span class="n">equal_height</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>   
+        <span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">15</span><span class="p">):</span>
+            <span class="c1"># 展示的页面标题</span>
+            <span class="n">gr</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;&lt;h1&gt;&lt;center&gt;InternLM&lt;/center&gt;&lt;/h1&gt;</span>
+<span class="s2">                &lt;center&gt;书生浦语&lt;/center&gt;</span>
+<span class="s2">                &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Row</span><span class="p">():</span>
+        <span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+            <span class="c1"># 创建一个聊天机器人对象</span>
+            <span class="n">chatbot</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Chatbot</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span> <span class="n">show_copy_button</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="c1"># 创建一个文本框组件，用于输入 prompt。</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Textbox</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Prompt/问题&quot;</span><span class="p">)</span>
+
+            <span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Row</span><span class="p">():</span>
+                <span class="c1"># 创建提交按钮。</span>
+                <span class="n">db_wo_his_btn</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="s2">&quot;Chat&quot;</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">gr</span><span class="o">.</span><span class="n">Row</span><span class="p">():</span>
+                <span class="c1"># 创建一个清除按钮，用于清除聊天机器人组件的内容。</span>
+                <span class="n">clear</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">ClearButton</span><span class="p">(</span>
+                    <span class="n">components</span><span class="o">=</span><span class="p">[</span><span class="n">chatbot</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;Clear console&quot;</span><span class="p">)</span>
+                
+        <span class="c1"># 设置按钮的点击事件。当点击时，调用上面定义的 qa_chain_self_answer 函数，并传入用户的消息和聊天历史记录，然后更新文本框和聊天机器人组件。</span>
+        <span class="n">db_wo_his_btn</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">model_center</span><span class="o">.</span><span class="n">qa_chain_self_answer</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="p">[</span>
+                            <span class="n">msg</span><span class="p">,</span> <span class="n">chatbot</span><span class="p">],</span> <span class="n">outputs</span><span class="o">=</span><span class="p">[</span><span class="n">msg</span><span class="p">,</span> <span class="n">chatbot</span><span class="p">])</span>
+
+    <span class="n">gr</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;提醒：&lt;br&gt;</span>
+<span class="s2">    1. 初始化数据库时间可能较长，请耐心等待。</span>
+<span class="s2">    2. 使用中如果出现异常，将会在文本输入框进行展示，请不要惊慌。 &lt;br&gt;</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+<span class="n">gr</span><span class="o">.</span><span class="n">close_all</span><span class="p">()</span>
+<span class="c1"># 直接启动</span>
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>通过将上述代码封装为 run_gradio.py 脚本，直接通过 python 命令运行，即可在本地启动知识库助手的 Web Demo，默认会在 7860 端口运行，接下来将服务器端口映射到本地端口即可访问:</p>
+<p><img alt="image-5" src="https://github.com/isLinXu/llm-notes/assets/59380685/cd198817-8fff-4403-9ee9-c5be3a800b21" /></p>
+<p>此处我们简要介绍如何将服务器端口映射到本地端口：</p>
+<p>首先我们需要配置一下本地的 <code class="docutils literal notranslate"><span class="pre">SSH</span> <span class="pre">Key</span></code> ，我们这里以<code class="docutils literal notranslate"><span class="pre">Windows</span></code>为例。</p>
+<ol class="arabic simple">
+<li><p>在本地机器上打开<code class="docutils literal notranslate"><span class="pre">Power</span> <span class="pre">Shell</span></code>终端。在终端中，运行以下命令来生成SSH密钥对：（如下图所示）</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>rsa
+</pre></div>
+</div>
+<p><img alt="image-5" src="https://github.com/isLinXu/llm-notes/assets/59380685/951f0ee5-972d-4650-a175-7c32481c9146" /></p>
+<ol class="arabic simple" start="2">
+<li><p>您将被提示选择密钥文件的保存位置，默认情况下是在 <code class="docutils literal notranslate"><span class="pre">~/.ssh/</span></code> 目录中。按Enter键接受默认值或输入自定义路径。</p></li>
+<li><p>公钥默认存储在 <code class="docutils literal notranslate"><span class="pre">~/.ssh/id_rsa.pub</span></code>，可以通过系统自带的 <code class="docutils literal notranslate"><span class="pre">cat</span></code> 工具查看文件内容：（如下图所示）</p></li>
+</ol>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">~</span></code> 是用户主目录的简写，<code class="docutils literal notranslate"><span class="pre">.ssh</span></code> 是SSH配置文件的默认存储目录，<code class="docutils literal notranslate"><span class="pre">id_rsa.pub</span></code> 是SSH公钥文件的默认名称。所以，<code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">~\.ssh\id_rsa.pub</span></code> 的意思是查看用户主目录下的 <code class="docutils literal notranslate"><span class="pre">.ssh</span></code> 目录中的 id_rsa.pub 文件的内容。</p>
+</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>~<span class="se">\.</span>ssh<span class="se">\i</span>d_rsa.pub
+</pre></div>
+</div>
+<p><img alt="image-52" src="https://github.com/isLinXu/llm-notes/assets/59380685/5d8e5f10-98ce-4986-88be-3ebb6e33b827" /></p>
+<ol class="arabic simple" start="4">
+<li><p>将公钥复制到剪贴板中，然后回到 <code class="docutils literal notranslate"><span class="pre">InternStudio</span></code> 控制台，点击配置SSH Key。如下图所示：</p></li>
+</ol>
+<p><img alt="image-53" src="https://github.com/isLinXu/llm-notes/assets/59380685/4f47aa78-32a8-4cea-87e7-44281ffad310" /></p>
+<ol class="arabic simple" start="5">
+<li><p>将刚刚复制的公钥添加进入即可。</p></li>
+</ol>
+<p><img alt="image-54" src="https://github.com/isLinXu/llm-notes/assets/59380685/188089bd-2d12-46dc-adf0-0c6193d109cf" /></p>
+<ol class="arabic simple" start="6">
+<li><p>在本地终端输入以下指令.7860是在服务器中打开的端口，而33090是根据开发机的端口进行更改。如下图所示：</p></li>
+</ol>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>-CNg<span class="w"> </span>-L<span class="w"> </span><span class="m">7860</span>:127.0.0.1:7860<span class="w"> </span>root@ssh.intern-ai.org.cn<span class="w"> </span>-p<span class="w"> </span><span class="m">33090</span>
+</pre></div>
+</div>
+<p><img alt="image-55" src="https://github.com/isLinXu/llm-notes/assets/59380685/8b73b2f9-ea38-462d-a9a4-d1b92d436d9d" /></p>
+<p>我们在仓库中也同步提供了上述所有脚本，可以查看该教程文件的同级目录的 <code class="docutils literal notranslate"><span class="pre">demo</span></code> 文件夹。</p>
+</section>
+<section id="id12">
+<h2>6 作业<a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h2>
+<p>提交方式：在各个班级对应的 GitHub Discussion 帖子中进行提交。</p>
+<p><strong>基础作业</strong>：</p>
+<p>复现课程知识库助手搭建过程 (截图)</p>
+<p><strong>进阶作业</strong>：</p>
+<p>选择一个垂直领域，收集该领域的专业资料构建专业知识库，并搭建专业问答助手，并在 <a class="reference external" href="https://openxlab.org.cn/apps">OpenXLab</a> 上成功部署（截图，并提供应用地址）</p>
+<p><strong>整体实训营项目：</strong></p>
+<p>时间周期：即日起致课程结束</p>
+<p>即日开始可以在班级群中随机组队完成一个大作业项目，一些可提供的选题如下：</p>
+<ul class="simple">
+<li><p>人情世故大模型：一个帮助用户撰写新年祝福文案的人情事故大模型</p></li>
+<li><p>中小学数学大模型：一个拥有一定数学解题能力的大模型</p></li>
+<li><p>心理大模型：一个治愈的心理大模型</p></li>
+<li><p>工具调用类项目：结合 Lagent 构建数据集训练 InternLM 模型，支持对 MMYOLO 等工具的调用</p></li>
+<li><p>其他基于书生·浦语工具链的小项目都在范围内，欢迎大家充分发挥想象力。</p></li>
+</ul>
+</section>
 </section>
 
 
@@ -393,6 +1063,43 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1 环境配置</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#internlm">1.1 InternLM 模型部署</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1.2 模型下载</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langchain">1.3 LangChain 相关环境配置</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nltk">1.4 下载 NLTK 相关资源</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">1.5 下载本项目代码</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2 知识库搭建</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2.1 数据收集</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">2.2 加载数据</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">2.3 构建向量数据库</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">2.4 整体脚本</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#internlm-langchain">3 InternLM 接入 LangChain</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">4 构建检索问答链</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">4.1 加载向量数据库</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-prompt-template">4.2 实例化自定义 LLM 与 Prompt Template</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">4.3 构建检索问答链</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#web-demo">5 部署 Web Demo</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">6 作业</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

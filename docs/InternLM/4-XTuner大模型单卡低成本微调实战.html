@@ -140,6 +140,7 @@
 <li class="toctree-l2"><a class="reference internal" href="3-%E5%9F%BA%E4%BA%8EInternLM%E5%92%8CLangchain%E6%90%AD%E5%BB%BA%E4%BD%A0%E7%9A%84%E7%9F%A5%E8%AF%86%E5%BA%93.html">3-基于InternLM和Langchain搭建你的知识库</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">4-XTuner大模型单卡低成本微调实战</a></li>
 <li class="toctree-l2"><a class="reference internal" href="5-LMDeploy%E5%A4%A7%E6%A8%A1%E5%9E%8B%E9%87%8F%E5%8C%96%E9%83%A8%E7%BD%B2%E5%AE%9E%E8%B7%B5.html">5-LMDeploy大模型量化部署实践</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="6-OpenCompass%E5%A4%A7%E6%A8%A1%E5%9E%8B%E8%AF%84%E6%B5%8B%E8%A7%A3%E8%AF%BB%E5%8F%8A%E5%AE%9E%E6%88%98%E6%8C%87%E5%8D%97.html">6-OpenCompass大模型评测解读及实战指南</a></li>
 </ul>
 </li>
@@ -330,7 +331,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -346,6 +349,78 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1 概述</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1.1 XTuner</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-2023-11-01">1.2 支持的开源LLM (2023.11.01)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">1.3 特色</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">1.4 微调原理</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2 快速上手</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">2.1 平台</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">2.2 安装</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">2.3 微调</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">2.3.1 准备配置文件</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">2.3.2 模型下载</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">2.3.3 数据集下载</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">2.3.4 修改配置文件</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">2.3.5 开始微调</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pth-huggingface-adapter">2.3.6 将得到的 PTH 模型转换为 HuggingFace 模型，<strong>即：生成 Adapter 文件夹</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">2.4 部署与测试</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#huggingface-adapter">2.4.1 将 HuggingFace adapter 合并到大语言模型：</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">2.4.2 与合并后的模型对话：</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#demo">2.4.3 Demo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">3 自定义微调</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">3.1 概述</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">3.1.1 <strong>场景需求</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">3.1.2 <strong>真实数据预览</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">3.2 数据准备</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">3.2.1 将数据转为 XTuner 的数据格式</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">3.2.2 划分训练集和测试集</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">3.3 开始自定义微调</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">3.3.1 准备配置文件</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">3.3.2 <strong>XTuner！启动！</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pth-huggingface">3.3.3 pth 转 huggingface</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">3.3.4 部署与测试</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ms-agent-llm-agent">4【补充】用 MS-Agent 数据集 赋予 LLM 以 Agent 能力</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">4.1 概述</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">4.2 微调步骤</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">4.2.1 准备工作</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">4.2.2 开始微调</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">4.3 直接使用</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#adapter">4.3.1 下载 Adapter</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#serper">4.3.2 添加 serper 环境变量</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#xtuner-agent">4.3.3 xtuner + agent，启动！</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">4.3.4 报错处理</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id33">5 其他已知问题和解决方案：</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id34">6 注意事项</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -358,6 +433,783 @@ document.write(`
   <section id="xtuner">
 <h1>4-XTuner大模型单卡低成本微调实战<a class="headerlink" href="#xtuner" title="Permalink to this heading">#</a></h1>
 <hr class="docutils" />
+<p><img alt="head2" src="https://github.com/isLinXu/llm-notes/assets/59380685/0a9d83f4-7d99-4b34-8159-3d69f38fdc60" /></p>
+<blockquote>
+<div><p>怎么硕呢，祝大家炼丹愉快吧~ 😙</p>
+</div></blockquote>
+<section id="id1">
+<h2>1 概述<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<section id="id2">
+<h3>1.1 XTuner<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>一个大语言模型微调工具箱。<em>由</em> <em>MMRazor</em> <em>和</em> <em>MMDeploy</em> <em>联合开发。</em></p>
+</section>
+<section id="llm-2023-11-01">
+<h3>1.2 支持的开源LLM (2023.11.01)<a class="headerlink" href="#llm-2023-11-01" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong><a class="reference external" href="https://huggingface.co/internlm/internlm-7b">InternLM</a></strong> ✅</p></li>
+<li><p><a class="reference external" href="https://huggingface.co/meta-llama">Llama，Llama2</a></p></li>
+<li><p><a class="reference external" href="https://huggingface.co/THUDM/chatglm2-6b">ChatGLM2</a>，<a class="reference external" href="https://huggingface.co/THUDM/chatglm3-6b-base">ChatGLM3</a></p></li>
+<li><p><a class="reference external" href="https://huggingface.co/Qwen/Qwen-7B">Qwen</a></p></li>
+<li><p><a class="reference external" href="https://huggingface.co/baichuan-inc/Baichuan-7B">Baichuan</a>，<a class="reference external" href="https://huggingface.co/baichuan-inc/Baichuan2-7B-Base">Baichuan2</a></p></li>
+<li><p>……</p></li>
+<li><p><a class="reference external" href="https://huggingface.co/HuggingFaceH4/zephyr-7b-beta">Zephyr</a></p></li>
+</ul>
+</section>
+<section id="id3">
+<h3>1.3 特色<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>🤓 <strong>傻瓜化：</strong> 以 配置文件 的形式封装了大部分微调场景，<strong>0基础的非专业人员也能一键开始微调</strong>。</p></li>
+<li><p>🍃 <strong>轻量级：</strong> 对于 7B 参数量的LLM，<strong>微调所需的最小显存仅为 8GB</strong> ： <strong>消费级显卡✅，colab✅</strong></p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>1.4 微调原理<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><p>想象一下，你有一个超大的玩具，现在你想改造这个超大的玩具。但是，<strong>对整个玩具进行全面的改动会非常昂贵</strong>。</p>
+</div></blockquote>
+<p>※ 因此，你找到了一种叫 <strong>LoRA</strong> 的方法：<strong>只对玩具中的某些零件进行改动，而不是对整个玩具进行全面改动</strong>。</p>
+<p>※ 而 <strong>QLoRA</strong> 是 LoRA 的一种改进：如果你手里只有一把生锈的螺丝刀，也能改造你的玩具。</p>
+<ul class="simple">
+<li><p><strong>Full</strong> :       😳 → 🚲</p></li>
+<li><p><strong><a class="reference external" href="http://arxiv.org/abs/2106.09685">LoRA</a></strong> :     😳 → 🛵</p></li>
+<li><p><strong><a class="reference external" href="http://arxiv.org/abs/2305.14314">QLoRA</a></strong> :   😳 → 🏍</p></li>
+</ul>
+<p><img alt="cat_fly" src="https://github.com/isLinXu/llm-notes/assets/59380685/e69dcc5c-26a8-4568-be15-98d705f7d357" /></p>
+</section>
+</section>
+<section id="id5">
+<h2>2 快速上手<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h2>
+<section id="id6">
+<h3>2.1 平台<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<p>Ubuntu + Anaconda + CUDA/CUDNN + 8GB nvidia显卡</p>
+</section>
+<section id="id7">
+<h3>2.2 安装<a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 如果你是在 InternStudio 平台，则从本地 clone 一个已有 pytorch 2.0.1 的环境：</span>
+/root/share/install_conda_env_internlm_base.sh<span class="w"> </span>xtuner0.1.9
+<span class="c1"># 如果你是在其他平台：</span>
+conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>xtuner0.1.9<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10<span class="w"> </span>-y
+
+<span class="c1"># 激活环境</span>
+conda<span class="w"> </span>activate<span class="w"> </span>xtuner0.1.9
+<span class="c1"># 进入家目录 （~的意思是 “当前用户的home路径”）</span>
+<span class="nb">cd</span><span class="w"> </span>~
+<span class="c1"># 创建版本文件夹并进入，以跟随本教程</span>
+mkdir<span class="w"> </span>xtuner019<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>xtuner019
+
+
+<span class="c1"># 拉取 0.1.9 的版本源码</span>
+git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>v0.1.9<span class="w">  </span>https://github.com/InternLM/xtuner
+<span class="c1"># 无法访问github的用户请从 gitee 拉取:</span>
+<span class="c1"># git clone -b v0.1.9 https://gitee.com/Internlm/xtuner</span>
+
+<span class="c1"># 进入源码目录</span>
+<span class="nb">cd</span><span class="w"> </span>xtuner
+
+<span class="c1"># 从源码安装 XTuner</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;.[all]&#39;</span>
+</pre></div>
+</div>
+<p>安装完后，就开始搞搞准备工作了。（准备在 oasst1 数据集上微调 internlm-7b-chat）</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 创建一个微调 oasst1 数据集的工作路径，进入</span>
+mkdir<span class="w"> </span>~/ft-oasst1<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/ft-oasst1
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h3>2.3 微调<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
+<section id="id9">
+<h4>2.3.1 准备配置文件<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h4>
+<p>XTuner 提供多个开箱即用的配置文件，用户可以通过下列命令查看：</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 列出所有内置配置</span>
+xtuner<span class="w"> </span>list-cfg
+</pre></div>
+</div>
+<p><img alt="cfgs" src="https://github.com/isLinXu/llm-notes/assets/59380685/c0336227-46a8-47aa-89e5-24e2208d36c1" /></p>
+<p>拷贝一个配置文件到当前目录：
+<code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">xtuner</span> <span class="pre">copy-cfg</span> <span class="pre">${CONFIG_NAME}</span> <span class="pre">${SAVE_PATH}</span></code></p>
+<p>在本案例中即：（注意最后有个英文句号，代表复制到当前路径）</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/ft-oasst1
+xtuner<span class="w"> </span>copy-cfg<span class="w"> </span>internlm_chat_7b_qlora_oasst1_e3<span class="w"> </span>.
+</pre></div>
+</div>
+<p>配置文件名的解释：</p>
+<blockquote>
+<div><p>xtuner copy-cfg internlm_chat_7b_qlora_oasst1_e3 .</p>
+</div></blockquote>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>模型名</p></th>
+<th class="head"><p>internlm_chat_7b</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>使用算法</p></td>
+<td><p>qlora</p></td>
+</tr>
+<tr class="row-odd"><td><p>数据集</p></td>
+<td><p>oasst1</p></td>
+</tr>
+<tr class="row-even"><td><p>把数据集跑几次</p></td>
+<td><p>跑3次：e3 (epoch 3 )</p></td>
+</tr>
+</tbody>
+</table>
+<p>*无 chat比如 <code class="docutils literal notranslate"><span class="pre">internlm-7b</span></code> 代表是基座(base)模型</p>
+</section>
+<section id="id10">
+<h4>2.3.2 模型下载<a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h4>
+<p>不用 xtuner 默认的<code class="docutils literal notranslate"><span class="pre">从</span> <span class="pre">huggingface</span> <span class="pre">拉取模型</span></code>，而是提前从 ~~OpenXLab~~ ModelScope 下载模型到本地</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 创建一个目录，放模型文件，防止散落一地</span>
+mkdir<span class="w"> </span>~/ft-oasst1/internlm-chat-7b
+
+<span class="c1"># 装一下拉取模型文件要用的库</span>
+pip<span class="w"> </span>install<span class="w"> </span>modelscope
+
+<span class="c1"># 从 modelscope 下载下载模型文件</span>
+<span class="nb">cd</span><span class="w"> </span>~/ft-oasst1
+apt<span class="w"> </span>install<span class="w"> </span>git<span class="w"> </span>git-lfs<span class="w"> </span>-y
+git<span class="w"> </span>lfs<span class="w"> </span>install
+git<span class="w"> </span>lfs<span class="w"> </span>clone<span class="w"> </span>https://modelscope.cn/Shanghai_AI_Laboratory/internlm-chat-7b.git<span class="w"> </span>-b<span class="w"> </span>v1.0.3
+</pre></div>
+</div>
+</section>
+<section id="id11">
+<h4>2.3.3 数据集下载<a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h4>
+<blockquote>
+<div><p>https://huggingface.co/datasets/timdettmers/openassistant-guanaco/tree/main</p>
+</div></blockquote>
+<p>由于 huggingface 网络问题，咱们已经给大家提前下载好了，复制到正确位置即可：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/ft-oasst1
+<span class="c1"># ...-guanaco 后面有个空格和英文句号啊</span>
+cp<span class="w"> </span>-r<span class="w"> </span>/root/share/temp/datasets/openassistant-guanaco<span class="w"> </span>.
+</pre></div>
+</div>
+<p>此时，当前路径的文件应该长这样：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="p">|</span>--<span class="w"> </span>internlm-chat-7b
+<span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>README.md
+<span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>config.json
+<span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>configuration.json
+<span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>configuration_internlm.py
+<span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>generation_config.json
+<span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>modeling_internlm.py
+<span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>pytorch_model-00001-of-00008.bin
+<span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>pytorch_model-00002-of-00008.bin
+<span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>pytorch_model-00003-of-00008.bin
+<span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>pytorch_model-00004-of-00008.bin
+<span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>pytorch_model-00005-of-00008.bin
+<span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>pytorch_model-00006-of-00008.bin
+<span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>pytorch_model-00007-of-00008.bin
+<span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>pytorch_model-00008-of-00008.bin
+<span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>pytorch_model.bin.index.json
+<span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>special_tokens_map.json
+<span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>tokenization_internlm.py
+<span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>tokenizer.model
+<span class="p">|</span><span class="w">   </span><span class="sb">`</span>--<span class="w"> </span>tokenizer_config.json
+<span class="p">|</span>--<span class="w"> </span>internlm_chat_7b_qlora_oasst1_e3_copy.py
+<span class="sb">`</span>--<span class="w"> </span>openassistant-guanaco
+<span class="w">    </span><span class="p">|</span>--<span class="w"> </span>openassistant_best_replies_eval.jsonl
+<span class="w">    </span><span class="sb">`</span>--<span class="w"> </span>openassistant_best_replies_train.jsonl
+</pre></div>
+</div>
+</section>
+<section id="id12">
+<h4>2.3.4 修改配置文件<a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h4>
+<p>修改其中的模型和数据集为 本地路径</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/ft-oasst1
+vim<span class="w"> </span>internlm_chat_7b_qlora_oasst1_e3_copy.py
+</pre></div>
+</div>
+<p>减号代表要删除的行，加号代表要增加的行。</p>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span># 修改模型为本地路径
+<span class="gd">- pretrained_model_name_or_path = &#39;internlm/internlm-chat-7b&#39;</span>
+<span class="gi">+ pretrained_model_name_or_path = &#39;./internlm-chat-7b&#39;</span>
+
+# 修改训练数据集为本地路径
+<span class="gd">- data_path = &#39;timdettmers/openassistant-guanaco&#39;</span>
+<span class="gi">+ data_path = &#39;./openassistant-guanaco&#39;</span>
+</pre></div>
+</div>
+<p><strong>常用超参</strong></p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>参数名</p></th>
+<th class="head"><p>解释</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>data_path</strong></p></td>
+<td><p>数据路径或 HuggingFace 仓库名</p></td>
+</tr>
+<tr class="row-odd"><td><p>max_length</p></td>
+<td><p>单条数据最大 Token 数，超过则截断</p></td>
+</tr>
+<tr class="row-even"><td><p>pack_to_max_length</p></td>
+<td><p>是否将多条短数据拼接到 max_length，提高 GPU 利用率</p></td>
+</tr>
+<tr class="row-odd"><td><p>accumulative_counts</p></td>
+<td><p>梯度累积，每多少次 backward 更新一次参数</p></td>
+</tr>
+<tr class="row-even"><td><p>evaluation_inputs</p></td>
+<td><p>训练过程中，会根据给定的问题进行推理，便于观测训练状态</p></td>
+</tr>
+<tr class="row-odd"><td><p>evaluation_freq</p></td>
+<td><p>Evaluation 的评测间隔 iter 数</p></td>
+</tr>
+<tr class="row-even"><td><p>……</p></td>
+<td><p>……</p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p>如果想把显卡的现存吃满，充分利用显卡资源，可以将 <code class="docutils literal notranslate"><span class="pre">max_length</span></code> 和 <code class="docutils literal notranslate"><span class="pre">batch_size</span></code> 这两个参数调大。</p>
+</div></blockquote>
+</section>
+<section id="id13">
+<h4>2.3.5 开始微调<a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h4>
+<p><strong>训练：</strong></p>
+<p>xtuner train ${CONFIG_NAME_OR_PATH}</p>
+<p><strong>也可以增加 deepspeed 进行训练加速：</strong></p>
+<p>xtuner train ${CONFIG_NAME_OR_PATH} –deepspeed deepspeed_zero2</p>
+<p>例如，我们可以利用 QLoRA 算法在 oasst1 数据集上微调 InternLM-7B：</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 单卡</span>
+<span class="c1">## 用刚才改好的config文件训练</span>
+xtuner<span class="w"> </span>train<span class="w"> </span>./internlm_chat_7b_qlora_oasst1_e3_copy.py
+
+<span class="c1"># 多卡</span>
+<span class="nv">NPROC_PER_NODE</span><span class="o">=</span><span class="si">${</span><span class="nv">GPU_NUM</span><span class="si">}</span><span class="w"> </span>xtuner<span class="w"> </span>train<span class="w"> </span>./internlm_chat_7b_qlora_oasst1_e3_copy.py
+
+<span class="c1"># 若要开启 deepspeed 加速，增加 --deepspeed deepspeed_zero2 即可</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>微调得到的 PTH 模型文件和其他杂七杂八的文件都默认在当前的 <code class="docutils literal notranslate"><span class="pre">./work_dirs</span></code> 中。</p>
+</div></blockquote>
+<p>跑完训练后，当前路径应该长这样：</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="p">|</span>--<span class="w"> </span>internlm-chat-7b
+<span class="p">|</span>--<span class="w"> </span>internlm_chat_7b_qlora_oasst1_e3_copy.py
+<span class="p">|</span>--<span class="w"> </span>openassistant-guanaco
+<span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>openassistant_best_replies_eval.jsonl
+<span class="p">|</span><span class="w">   </span><span class="sb">`</span>--<span class="w"> </span>openassistant_best_replies_train.jsonl
+<span class="sb">`</span>--<span class="w"> </span>work_dirs
+<span class="w">    </span><span class="sb">`</span>--<span class="w"> </span>internlm_chat_7b_qlora_oasst1_e3_copy
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>20231101_152923
+<span class="w">        </span><span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>20231101_152923.log
+<span class="w">        </span><span class="p">|</span><span class="w">   </span><span class="sb">`</span>--<span class="w"> </span>vis_data
+<span class="w">        </span><span class="p">|</span><span class="w">       </span><span class="p">|</span>--<span class="w"> </span>20231101_152923.json
+<span class="w">        </span><span class="p">|</span><span class="w">       </span><span class="p">|</span>--<span class="w"> </span>config.py
+<span class="w">        </span><span class="p">|</span><span class="w">       </span><span class="sb">`</span>--<span class="w"> </span>scalars.json
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>epoch_1.pth
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>epoch_2.pth
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>epoch_3.pth
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>internlm_chat_7b_qlora_oasst1_e3_copy.py
+<span class="w">        </span><span class="sb">`</span>--<span class="w"> </span>last_checkpoint
+</pre></div>
+</div>
+</section>
+<section id="pth-huggingface-adapter">
+<h4>2.3.6 将得到的 PTH 模型转换为 HuggingFace 模型，<strong>即：生成 Adapter 文件夹</strong><a class="headerlink" href="#pth-huggingface-adapter" title="Permalink to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">xtuner</span> <span class="pre">convert</span> <span class="pre">pth_to_hf</span> <span class="pre">${CONFIG_NAME_OR_PATH}</span> <span class="pre">${PTH_file_dir}</span> <span class="pre">${SAVE_PATH}</span></code></p>
+<p>在本示例中，为：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>hf
+<span class="nb">export</span><span class="w"> </span><span class="nv">MKL_SERVICE_FORCE_INTEL</span><span class="o">=</span><span class="m">1</span>
+
+xtuner<span class="w"> </span>convert<span class="w"> </span>pth_to_hf<span class="w"> </span>./internlm_chat_7b_qlora_oasst1_e3_copy.py<span class="w"> </span>./work_dirs/internlm_chat_7b_qlora_oasst1_e3_copy/epoch_3.pth<span class="w"> </span>./hf
+</pre></div>
+</div>
+<p>此时，路径中应该长这样：</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="p">|</span>--<span class="w"> </span>internlm-chat-7b
+<span class="p">|</span>--<span class="w"> </span>internlm_chat_7b_qlora_oasst1_e3_copy.py
+<span class="p">|</span>--<span class="w"> </span>openassistant-guanaco
+<span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>openassistant_best_replies_eval.jsonl
+<span class="p">|</span><span class="w">   </span><span class="sb">`</span>--<span class="w"> </span>openassistant_best_replies_train.jsonl
+<span class="p">|</span>--<span class="w"> </span>hf
+<span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>README.md
+<span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>adapter_config.json
+<span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>adapter_model.bin
+<span class="p">|</span><span class="w">   </span><span class="sb">`</span>--<span class="w"> </span>xtuner_config.py
+<span class="sb">`</span>--<span class="w"> </span>work_dirs
+<span class="w">    </span><span class="sb">`</span>--<span class="w"> </span>internlm_chat_7b_qlora_oasst1_e3_copy
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>20231101_152923
+<span class="w">        </span><span class="p">|</span><span class="w">   </span><span class="p">|</span>--<span class="w"> </span>20231101_152923.log
+<span class="w">        </span><span class="p">|</span><span class="w">   </span><span class="sb">`</span>--<span class="w"> </span>vis_data
+<span class="w">        </span><span class="p">|</span><span class="w">       </span><span class="p">|</span>--<span class="w"> </span>20231101_152923.json
+<span class="w">        </span><span class="p">|</span><span class="w">       </span><span class="p">|</span>--<span class="w"> </span>config.py
+<span class="w">        </span><span class="p">|</span><span class="w">       </span><span class="sb">`</span>--<span class="w"> </span>scalars.json
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>epoch_1.pth
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>epoch_2.pth
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>epoch_3.pth
+<span class="w">        </span><span class="p">|</span>--<span class="w"> </span>internlm_chat_7b_qlora_oasst1_e3_copy.py
+<span class="w">        </span><span class="sb">`</span>--<span class="w"> </span>last_checkpoint
+</pre></div>
+</div>
+<p><span style="color: red;"><strong>此时，hf 文件夹即为我们平时所理解的所谓 “LoRA 模型文件”</strong></span></p>
+<blockquote>
+<div><p>可以简单理解：LoRA 模型文件 = Adapter</p>
+</div></blockquote>
+</section>
+</section>
+<section id="id14">
+<h3>2.4 部署与测试<a class="headerlink" href="#id14" title="Permalink to this heading">#</a></h3>
+<section id="huggingface-adapter">
+<h4>2.4.1 将 HuggingFace adapter 合并到大语言模型：<a class="headerlink" href="#huggingface-adapter" title="Permalink to this heading">#</a></h4>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>xtuner<span class="w"> </span>convert<span class="w"> </span>merge<span class="w"> </span>./internlm-chat-7b<span class="w"> </span>./hf<span class="w"> </span>./merged<span class="w"> </span>--max-shard-size<span class="w"> </span>2GB
+<span class="c1"># xtuner convert merge \</span>
+<span class="c1">#     ${NAME_OR_PATH_TO_LLM} \</span>
+<span class="c1">#     ${NAME_OR_PATH_TO_ADAPTER} \</span>
+<span class="c1">#     ${SAVE_PATH} \</span>
+<span class="c1">#     --max-shard-size 2GB</span>
+</pre></div>
+</div>
+</section>
+<section id="id15">
+<h4>2.4.2 与合并后的模型对话：<a class="headerlink" href="#id15" title="Permalink to this heading">#</a></h4>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 加载 Adapter 模型对话（Float 16）</span>
+xtuner<span class="w"> </span>chat<span class="w"> </span>./merged<span class="w"> </span>--prompt-template<span class="w"> </span>internlm_chat
+
+<span class="c1"># 4 bit 量化加载</span>
+<span class="c1"># xtuner chat ./merged --bits 4 --prompt-template internlm_chat</span>
+</pre></div>
+</div>
+</section>
+<section id="demo">
+<h4>2.4.3 Demo<a class="headerlink" href="#demo" title="Permalink to this heading">#</a></h4>
+<ul class="simple">
+<li><p>修改 <code class="docutils literal notranslate"><span class="pre">cli_demo.py</span></code> 中的模型路径</p></li>
+</ul>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="gd">- model_name_or_path = &quot;/root/model/Shanghai_AI_Laboratory/internlm-chat-7b&quot;</span>
+<span class="gi">+ model_name_or_path = &quot;merged&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>运行 <code class="docutils literal notranslate"><span class="pre">cli_demo.py</span></code> 以目测微调效果</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>./cli_demo.py
+</pre></div>
+</div>
+<p><strong>效果：</strong></p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>微调前</p></th>
+<th class="head"><p>微调后</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><img alt="O23QD48iFSZMfbr.png" src="https://github.com/isLinXu/llm-notes/assets/59380685/75adff85-5435-4c70-9a67-2d1bdc34c9e6" /></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><img alt="beforeFT" src="https://github.com/isLinXu/llm-notes/assets/59380685/2a803c80-9fec-4e91-9929-c9e95ff2f88f" /></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong><code class="docutils literal notranslate"><span class="pre">xtuner</span> <span class="pre">chat</span></code></strong> <strong>的启动参数</strong></p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>启动参数</p></th>
+<th class="head"><p>干哈滴</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>–prompt-template</strong></p></td>
+<td><p>指定对话模板</p></td>
+</tr>
+<tr class="row-odd"><td><p>–system</p></td>
+<td><p>指定SYSTEM文本</p></td>
+</tr>
+<tr class="row-even"><td><p>–system-template</p></td>
+<td><p>指定SYSTEM模板</p></td>
+</tr>
+<tr class="row-odd"><td><p>-<strong>-bits</strong></p></td>
+<td><p>LLM位数</p></td>
+</tr>
+<tr class="row-even"><td><p>–bot-name</p></td>
+<td><p>bot名称</p></td>
+</tr>
+<tr class="row-odd"><td><p>–with-plugins</p></td>
+<td><p>指定要使用的插件</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>–no-streamer</strong></p></td>
+<td><p>是否启用流式传输</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>–lagent</strong></p></td>
+<td><p>是否使用lagent</p></td>
+</tr>
+<tr class="row-even"><td><p>–command-stop-word</p></td>
+<td><p>命令停止词</p></td>
+</tr>
+<tr class="row-odd"><td><p>–answer-stop-word</p></td>
+<td><p>回答停止词</p></td>
+</tr>
+<tr class="row-even"><td><p>–offload-folder</p></td>
+<td><p>存放模型权重的文件夹（或者已经卸载模型权重的文件夹）</p></td>
+</tr>
+<tr class="row-odd"><td><p>–max-new-tokens</p></td>
+<td><p>生成文本中允许的最大 <code class="docutils literal notranslate"><span class="pre">token</span></code> 数量</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>–temperature</strong></p></td>
+<td><p>温度值</p></td>
+</tr>
+<tr class="row-odd"><td><p>–top-k</p></td>
+<td><p>保留用于顶k筛选的最高概率词汇标记数</p></td>
+</tr>
+<tr class="row-even"><td><p>–top-p</p></td>
+<td><p>如果设置为小于1的浮点数，仅保留概率相加高于 <code class="docutils literal notranslate"><span class="pre">top_p</span></code> 的最小一组最有可能的标记</p></td>
+</tr>
+<tr class="row-odd"><td><p>–seed</p></td>
+<td><p>用于可重现文本生成的随机种子</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="id16">
+<h2>3 自定义微调<a class="headerlink" href="#id16" title="Permalink to this heading">#</a></h2>
+<blockquote>
+<div><p>以 <strong><a class="reference external" href="https://github.com/abachaa/Medication_QA_MedInfo2019">Medication QA</a></strong> <strong>数据集</strong>为例</p>
+</div></blockquote>
+<section id="id17">
+<h3>3.1 概述<a class="headerlink" href="#id17" title="Permalink to this heading">#</a></h3>
+<section id="id18">
+<h4>3.1.1 <strong>场景需求</strong><a class="headerlink" href="#id18" title="Permalink to this heading">#</a></h4>
+<p>基于 InternLM-chat-7B 模型，用 MedQA 数据集进行微调，将其往<code class="docutils literal notranslate"><span class="pre">医学问答</span></code>领域对齐。</p>
+</section>
+<section id="id19">
+<h4>3.1.2 <strong>真实数据预览</strong><a class="headerlink" href="#id19" title="Permalink to this heading">#</a></h4>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>问题</p></th>
+<th class="head"><p>答案</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>What are ketorolac eye drops?（什么是酮咯酸滴眼液？）</p></td>
+<td><p>Ophthalmic   ketorolac is used to treat itchy eyes caused by allergies. It also is used to   treat swelling and redness (inflammation) that can occur after cataract   surgery. Ketorolac is in a class of medications called nonsteroidal   anti-inflammatory drugs (NSAIDs). It works by stopping the release of   substances that cause allergy symptoms and inflammation.</p></td>
+</tr>
+<tr class="row-odd"><td><p>What medicines raise blood sugar? （什么药物会升高血糖？）</p></td>
+<td><p>Some   medicines for conditions other than diabetes can raise your blood sugar   level. This is a concern when you have diabetes. Make sure every doctor you   see knows about all of the medicines, vitamins, or herbal supplements you   take. This means anything you take with or without a prescription. Examples include:     Barbiturates.     Thiazide diuretics.     Corticosteroids.     Birth control pills (oral contraceptives) and progesterone.     Catecholamines.     Decongestants that contain beta-adrenergic agents, such as pseudoephedrine.     The B vitamin niacin. The risk of high blood sugar from niacin lowers after you have taken it for a few months. The antipsychotic medicine olanzapine (Zyprexa).</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="id20">
+<h3>3.2 数据准备<a class="headerlink" href="#id20" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><p><strong>以</strong> <strong><a class="reference external" href="https://github.com/abachaa/Medication_QA_MedInfo2019">Medication QA</a></strong> <strong>数据集为例</strong></p>
+</div></blockquote>
+<p><strong>原格式：(.xlsx)</strong></p>
+<p><img alt="medqa2019samples" src="https://github.com/isLinXu/llm-notes/assets/59380685/d7bf50ae-46e4-4eca-97ed-41341261bf82" /></p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>问题</strong></p></th>
+<th class="head"><p>药物类型</p></th>
+<th class="head"><p>问题类型</p></th>
+<th class="head"><p><strong>回答</strong></p></th>
+<th class="head"><p>主题</p></th>
+<th class="head"><p>URL</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>aaa</p></td>
+<td><p>bbb</p></td>
+<td><p>ccc</p></td>
+<td><p>ddd</p></td>
+<td><p>eee</p></td>
+<td><p>fff</p></td>
+</tr>
+</tbody>
+</table>
+<section id="id21">
+<h4>3.2.1 将数据转为 XTuner 的数据格式<a class="headerlink" href="#id21" title="Permalink to this heading">#</a></h4>
+<p><strong>目标格式：(.jsonL)</strong></p>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">[{</span>
+<span class="w">    </span><span class="nt">&quot;conversation&quot;</span><span class="p">:[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;system&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xxx&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;input&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xxx&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;output&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xxx&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">},</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;conversation&quot;</span><span class="p">:[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;system&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xxx&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;input&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xxx&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;output&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;xxx&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}]</span>
+</pre></div>
+</div>
+<p>🧠通过 pytho n脚本：将 <code class="docutils literal notranslate"><span class="pre">.xlsx</span></code> 中的 问题 和 回答 两列 提取出来，再放入 <code class="docutils literal notranslate"><span class="pre">.jsonL</span></code> 文件的每个 conversation 的 input 和 output 中。</p>
+<blockquote>
+<div><p>这一步的 python 脚本可以请 ChatGPT 来完成。</p>
+</div></blockquote>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Write a python file for me. using openpyxl. input file name is MedQA2019.xlsx
+Step1: The input file is .xlsx. Exact the column A and column D in the sheet named &quot;DrugQA&quot; .
+Step2: Put each value in column A into each &quot;input&quot; of each &quot;conversation&quot;. Put each value in column D into each &quot;output&quot; of each &quot;conversation&quot;.
+Step3: The output file is .jsonL. It looks like:
+[{
+    &quot;conversation&quot;:[
+        {
+            &quot;system&quot;: &quot;xxx&quot;,
+            &quot;input&quot;: &quot;xxx&quot;,
+            &quot;output&quot;: &quot;xxx&quot;
+        }
+    ]
+},
+{
+    &quot;conversation&quot;:[
+        {
+            &quot;system&quot;: &quot;xxx&quot;,
+            &quot;input&quot;: &quot;xxx&quot;,
+            &quot;output&quot;: &quot;xxx&quot;
+        }
+    ]
+}]
+Step4: All &quot;system&quot; value changes to &quot;You are a professional, highly experienced doctor professor. You always provide accurate, comprehensive, and detailed answers based on the patients&#39; questions.&quot;
+</pre></div>
+</div>
+<blockquote>
+<div><p>ChatGPT 生成的 python 代码见本仓库的 <span class="xref myst">xlsx2jsonl.py</span></p>
+</div></blockquote>
+<p>执行 python 脚本，获得格式化后的数据集：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>xlsx2jsonl.py
+</pre></div>
+</div>
+<p><strong>格式化后的数据集长这样：</strong></p>
+<p><img alt="dataProcessed" src="https://github.com/isLinXu/llm-notes/assets/59380685/76cb6dc6-8a02-4e22-aa09-7b29920ea8ea" /></p>
+<p>此时，当然也可以对数据进行训练集和测试集的分割，同样可以让 ChatGPT 写 python 代码。当然如果你没有严格的科研需求、不在乎“训练集泄露”的问题，也可以不做训练集与测试集的分割。</p>
+</section>
+<section id="id22">
+<h4>3.2.2 划分训练集和测试集<a class="headerlink" href="#id22" title="Permalink to this heading">#</a></h4>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>my .jsonL file looks like:
+[{
+    &quot;conversation&quot;:[
+        {
+            &quot;system&quot;: &quot;xxx&quot;,
+            &quot;input&quot;: &quot;xxx&quot;,
+            &quot;output&quot;: &quot;xxx&quot;
+        }
+    ]
+},
+{
+    &quot;conversation&quot;:[
+        {
+            &quot;system&quot;: &quot;xxx&quot;,
+            &quot;input&quot;: &quot;xxx&quot;,
+            &quot;output&quot;: &quot;xxx&quot;
+        }
+    ]
+}]
+Step1, read the .jsonL file.
+Step2, count the amount of the &quot;conversation&quot; elements.
+Step3, randomly split all &quot;conversation&quot; elements by 7:3. Targeted structure is same as the input.
+Step4, save the 7/10 part as train.jsonl. save the 3/10 part as test.jsonl
+</pre></div>
+</div>
+<p>生成的python代码见 <span class="xref myst">split2train_and_test.py</span></p>
+</section>
+</section>
+<section id="id23">
+<h3>3.3 开始自定义微调<a class="headerlink" href="#id23" title="Permalink to this heading">#</a></h3>
+<p>此时，我们重新建一个文件夹来玩“微调自定义数据集”</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>~/ft-medqa<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/ft-medqa
+</pre></div>
+</div>
+<p>把前面下载好的internlm-chat-7b模型文件夹拷贝过来。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp<span class="w"> </span>-r<span class="w"> </span>~/ft-oasst1/internlm-chat-7b<span class="w"> </span>.
+</pre></div>
+</div>
+<p>别忘了把自定义数据集，即几个 <code class="docutils literal notranslate"><span class="pre">.jsonL</span></code>，也传到服务器上。</p>
+<section id="id24">
+<h4>3.3.1 准备配置文件<a class="headerlink" href="#id24" title="Permalink to this heading">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 复制配置文件到当前目录</span>
+xtuner<span class="w"> </span>copy-cfg<span class="w"> </span>internlm_chat_7b_qlora_oasst1_e3<span class="w"> </span>.
+<span class="c1"># 改个文件名</span>
+mv<span class="w"> </span>internlm_chat_7b_qlora_oasst1_e3_copy.py<span class="w"> </span>internlm_chat_7b_qlora_medqa2019_e3.py
+
+<span class="c1"># 修改配置文件内容</span>
+vim<span class="w"> </span>internlm_chat_7b_qlora_medqa2019_e3.py
+</pre></div>
+</div>
+<p>减号代表要删除的行，加号代表要增加的行。</p>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span># 修改import部分
+<span class="gd">- from xtuner.dataset.map_fns import oasst1_map_fn, template_map_fn_factory</span>
+<span class="gi">+ from xtuner.dataset.map_fns import template_map_fn_factory</span>
+
+# 修改模型为本地路径
+<span class="gd">- pretrained_model_name_or_path = &#39;internlm/internlm-chat-7b&#39;</span>
+<span class="gi">+ pretrained_model_name_or_path = &#39;./internlm-chat-7b&#39;</span>
+
+# 修改训练数据为 MedQA2019-structured-train.jsonl 路径
+<span class="gd">- data_path = &#39;timdettmers/openassistant-guanaco&#39;</span>
+<span class="gi">+ data_path = &#39;./MedQA2019/MedQA2019-structured-train.jsonl&#39;</span>
+
+# 修改 train_dataset 对象
+train_dataset = dict(
+<span class="w"> </span>   type=process_hf_dataset,
+<span class="gd">-   dataset=dict(type=load_dataset, path=data_path),</span>
+<span class="gi">+   dataset=dict(type=load_dataset, path=&#39;json&#39;, data_files=dict(train=data_path)),</span>
+<span class="w"> </span>   tokenizer=tokenizer,
+<span class="w"> </span>   max_length=max_length,
+<span class="gd">-   dataset_map_fn=alpaca_map_fn,</span>
+<span class="gi">+   dataset_map_fn=None,</span>
+<span class="w"> </span>   template_map_fn=dict(
+<span class="w"> </span>       type=template_map_fn_factory, template=prompt_template),
+<span class="w"> </span>   remove_unused_columns=True,
+<span class="w"> </span>   shuffle_before_pack=True,
+<span class="w"> </span>   pack_to_max_length=pack_to_max_length)
+</pre></div>
+</div>
+</section>
+<section id="id25">
+<h4>3.3.2 <strong>XTuner！启动！</strong><a class="headerlink" href="#id25" title="Permalink to this heading">#</a></h4>
+<p><img alt="ysqd" src="https://github.com/isLinXu/llm-notes/assets/59380685/57ed9cca-0407-4678-b82c-e56b200f216d" /></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xtuner<span class="w"> </span>train<span class="w"> </span>internlm_chat_7b_qlora_medqa2019_e3.py
+</pre></div>
+</div>
+</section>
+<section id="pth-huggingface">
+<h4>3.3.3 pth 转 huggingface<a class="headerlink" href="#pth-huggingface" title="Permalink to this heading">#</a></h4>
+<p>同前述，这里不赘述了。<span class="xref myst">将得到的-pth-模型转换为-huggingface-模型即生成adapter文件夹</span></p>
+</section>
+<section id="id26">
+<h4>3.3.4 部署与测试<a class="headerlink" href="#id26" title="Permalink to this heading">#</a></h4>
+<p>同前述。<span class="xref myst">部署与测试</span></p>
+</section>
+</section>
+</section>
+<section id="ms-agent-llm-agent">
+<h2>4【补充】用 MS-Agent 数据集 赋予 LLM 以 Agent 能力<a class="headerlink" href="#ms-agent-llm-agent" title="Permalink to this heading">#</a></h2>
+<section id="id27">
+<h3>4.1 概述<a class="headerlink" href="#id27" title="Permalink to this heading">#</a></h3>
+<p>MSAgent 数据集每条样本包含一个对话列表（conversations），其里面包含了 system、user、assistant 三种字段。其中：</p>
+<ul class="simple">
+<li><p>system: 表示给模型前置的人设输入，其中有告诉模型如何调用插件以及生成请求</p></li>
+<li><p>user: 表示用户的输入 prompt，分为两种，通用生成的prompt和调用插件需求的 prompt</p></li>
+<li><p>assistant: 为模型的回复。其中会包括插件调用代码和执行代码，调用代码是要 LLM 生成的，而执行代码是调用服务来生成结果的</p></li>
+</ul>
+<p>一条调用网页搜索插件查询“上海明天天气”的数据样本示例如下图所示：</p>
+<p><img alt="msagent_data" src="https://github.com/isLinXu/llm-notes/assets/59380685/6c94b4db-e503-4b81-99c9-ade7ad2f601a" /></p>
+</section>
+<section id="id28">
+<h3>4.2 微调步骤<a class="headerlink" href="#id28" title="Permalink to this heading">#</a></h3>
+<section id="id29">
+<h4>4.2.1 准备工作<a class="headerlink" href="#id29" title="Permalink to this heading">#</a></h4>
+<blockquote>
+<div><p>xtuner 是从国内的 ModelScope 平台下载 MS-Agent 数据集，因此不用提前手动下载数据集文件。</p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 准备工作</span>
+mkdir<span class="w"> </span>~/ft-msagent<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/ft-msagent
+cp<span class="w"> </span>-r<span class="w"> </span>~/ft-oasst1/internlm-chat-7b<span class="w"> </span>.
+
+<span class="c1"># 查看配置文件</span>
+xtuner<span class="w"> </span>list-cfg<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>msagent
+
+<span class="c1"># 复制配置文件到当前目录</span>
+xtuner<span class="w"> </span>copy-cfg<span class="w"> </span>internlm_7b_qlora_msagent_react_e3_gpu8<span class="w"> </span>.
+
+<span class="c1"># 修改配置文件中的模型为本地路径</span>
+vim<span class="w"> </span>./internlm_7b_qlora_msagent_react_e3_gpu8_copy.py<span class="w"> </span>
+</pre></div>
+</div>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="gd">- pretrained_model_name_or_path = &#39;internlm/internlm-chat-7b&#39;</span>
+<span class="gi">+ pretrained_model_name_or_path = &#39;./internlm-chat-7b&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="id30">
+<h4>4.2.2 开始微调<a class="headerlink" href="#id30" title="Permalink to this heading">#</a></h4>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>xtuner<span class="w"> </span>train<span class="w"> </span>./internlm_7b_qlora_msagent_react_e3_gpu8_copy.py<span class="w"> </span>--deepspeed<span class="w"> </span>deepspeed_zero2
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id31">
+<h3>4.3 直接使用<a class="headerlink" href="#id31" title="Permalink to this heading">#</a></h3>
+<blockquote>
+<div><p>由于 msagent 的训练非常费时，大家如果想尽快把这个教程跟完，可以直接从 modelScope 拉取咱们已经微调好了的 Adapter。如下演示。</p>
+</div></blockquote>
+<section id="adapter">
+<h4>4.3.1 下载 Adapter<a class="headerlink" href="#adapter" title="Permalink to this heading">#</a></h4>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/ft-msagent
+apt<span class="w"> </span>install<span class="w"> </span>git<span class="w"> </span>git-lfs
+git<span class="w"> </span>lfs<span class="w"> </span>install
+git<span class="w"> </span>lfs<span class="w"> </span>clone<span class="w"> </span>https://www.modelscope.cn/xtuner/internlm-7b-qlora-msagent-react.git
+</pre></div>
+</div>
+<p>OK，现在目录应该长这样：</p>
+<ul class="simple">
+<li><p>internlm_7b_qlora_msagent_react_e3_gpu8_copy.py</p></li>
+<li><p>internlm-7b-qlora-msagent-react</p></li>
+<li><p>internlm-chat-7b</p></li>
+<li><p>work_dir（可有可无）</p></li>
+</ul>
+<p>有了这个在 msagent 上训练得到的Adapter，模型现在已经有 agent 能力了！就可以加 –lagent 以调用来自 lagent 的代理功能了！</p>
+</section>
+<section id="serper">
+<h4>4.3.2 添加 serper 环境变量<a class="headerlink" href="#serper" title="Permalink to this heading">#</a></h4>
+<blockquote>
+<div><p><strong>开始 chat 之前，还要加个 serper 的环境变量：</strong></p>
+<p>去 serper.dev 免费注册一个账号，生成自己的 api key。这个东西是用来给 lagent 去获取 google 搜索的结果的。等于是 serper.dev 帮你去访问 google，而不是从你自己本地去访问 google 了。</p>
+</div></blockquote>
+<p><img alt="serper" src="https://github.com/isLinXu/llm-notes/assets/59380685/95138c9a-dcd7-413f-af93-7bafd3a81eb6" /></p>
+<p>添加 serper api key 到环境变量：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">SERPER_API_KEY</span><span class="o">=</span>abcdefg
+</pre></div>
+</div>
+</section>
+<section id="xtuner-agent">
+<h4>4.3.3 xtuner + agent，启动！<a class="headerlink" href="#xtuner-agent" title="Permalink to this heading">#</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xtuner<span class="w"> </span>chat<span class="w"> </span>./internlm-chat-7b<span class="w"> </span>--adapter<span class="w"> </span>internlm-7b-qlora-msagent-react<span class="w"> </span>--lagent
+</pre></div>
+</div>
+</section>
+<section id="id32">
+<h4>4.3.4 报错处理<a class="headerlink" href="#id32" title="Permalink to this heading">#</a></h4>
+<p>xtuner chat 增加 –lagent 参数后，报错 <code class="docutils literal notranslate"><span class="pre">TypeError:</span> <span class="pre">transfomers.modelsauto.auto</span> <span class="pre">factory.</span> <span class="pre">BaseAutoModelClass.from</span> <span class="pre">pretrained()</span> <span class="pre">got</span> <span class="pre">multiple</span> <span class="pre">values</span> <span class="pre">for</span> <span class="pre">keyword</span> <span class="pre">argument</span> <span class="pre">&quot;trust</span> <span class="pre">renote</span> <span class="pre">code&quot;</span></code></p>
+<p>注释掉已安装包中的代码：</p>
+<p><img alt="serper" src="https://github.com/isLinXu/llm-notes/assets/59380685/6dd68dc9-142b-4e58-9cfc-a5a192f2c4e5" /></p>
+<p><img alt="bugfix2" src="https://github.com/isLinXu/llm-notes/assets/59380685/0c516466-106e-47f5-8bb1-a4fd418ab2c8" /></p>
+</section>
+</section>
+</section>
+<section id="id33">
+<h2>5 其他已知问题和解决方案：<a class="headerlink" href="#id33" title="Permalink to this heading">#</a></h2>
+<p>https://docs.qq.com/doc/DY1d2ZVFlbXlrUERj</p>
+<p>小作业助教老师会在社群中公布。
+Have fun!</p>
+</section>
+<section id="id34">
+<h2>6 注意事项<a class="headerlink" href="#id34" title="Permalink to this heading">#</a></h2>
+<p>本教程使用 xtuner 0.1.9 版本
+若需要跟着本教程一步一步完成，建议严格遵循本教程的步骤！</p>
+<p>若出现莫名其妙报错，请尝试更换为以下包的版本：（如果有报错再检查，没报错不用看）</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">torch</span>                         <span class="mf">2.1.1</span>
+<span class="n">transformers</span>                  <span class="mf">4.34.0</span>
+<span class="n">transformers</span><span class="o">-</span><span class="n">stream</span><span class="o">-</span><span class="n">generator</span> <span class="mf">0.0.4</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">torch</span><span class="o">==</span><span class="m">2</span>.1.1
+pip<span class="w"> </span>install<span class="w"> </span><span class="nv">transformers</span><span class="o">==</span><span class="m">4</span>.34.0
+pip<span class="w"> </span>install<span class="w"> </span>transformers-stream-generator<span class="o">=</span><span class="m">0</span>.0.4
+</pre></div>
+</div>
+<p>CUDA 相关：（如果有报错再检查，没报错不用看）</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NVIDIA</span><span class="o">-</span><span class="n">SMI</span> <span class="mf">535.54.03</span>              
+<span class="n">Driver</span> <span class="n">Version</span><span class="p">:</span> <span class="mf">535.54.03</span>    
+<span class="n">CUDA</span> <span class="n">Version</span><span class="p">:</span> <span class="mf">12.2</span>
+
+<span class="n">nvidia</span><span class="o">-</span><span class="n">cuda</span><span class="o">-</span><span class="n">cupti</span><span class="o">-</span><span class="n">cu12</span>        <span class="mf">12.1.105</span>
+<span class="n">nvidia</span><span class="o">-</span><span class="n">cuda</span><span class="o">-</span><span class="n">nvrtc</span><span class="o">-</span><span class="n">cu12</span>        <span class="mf">12.1.105</span>
+<span class="n">nvidia</span><span class="o">-</span><span class="n">cuda</span><span class="o">-</span><span class="n">runtime</span><span class="o">-</span><span class="n">cu12</span>      <span class="mf">12.1.105</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -393,6 +1245,84 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1 概述</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1.1 XTuner</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-2023-11-01">1.2 支持的开源LLM (2023.11.01)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">1.3 特色</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">1.4 微调原理</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2 快速上手</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">2.1 平台</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">2.2 安装</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">2.3 微调</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">2.3.1 准备配置文件</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">2.3.2 模型下载</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">2.3.3 数据集下载</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">2.3.4 修改配置文件</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">2.3.5 开始微调</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pth-huggingface-adapter">2.3.6 将得到的 PTH 模型转换为 HuggingFace 模型，<strong>即：生成 Adapter 文件夹</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">2.4 部署与测试</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#huggingface-adapter">2.4.1 将 HuggingFace adapter 合并到大语言模型：</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">2.4.2 与合并后的模型对话：</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#demo">2.4.3 Demo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">3 自定义微调</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">3.1 概述</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">3.1.1 <strong>场景需求</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">3.1.2 <strong>真实数据预览</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">3.2 数据准备</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">3.2.1 将数据转为 XTuner 的数据格式</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">3.2.2 划分训练集和测试集</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">3.3 开始自定义微调</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">3.3.1 准备配置文件</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">3.3.2 <strong>XTuner！启动！</strong></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pth-huggingface">3.3.3 pth 转 huggingface</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">3.3.4 部署与测试</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ms-agent-llm-agent">4【补充】用 MS-Agent 数据集 赋予 LLM 以 Agent 能力</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">4.1 概述</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">4.2 微调步骤</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">4.2.1 准备工作</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">4.2.2 开始微调</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">4.3 直接使用</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#adapter">4.3.1 下载 Adapter</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#serper">4.3.2 添加 serper 环境变量</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#xtuner-agent">4.3.3 xtuner + agent，启动！</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">4.3.4 报错处理</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id33">5 其他已知问题和解决方案：</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id34">6 注意事项</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
